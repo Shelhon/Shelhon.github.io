@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="spring框架的介绍&amp;nbsp;　　Spring框架是一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。 &amp;nbsp;　　记录了一些关于框架特点和特性以及Spring工作流程图。比如：IOC 、AOP的底层原理，属性注入，注解，bean管理">
+<meta name="description" content="spring框架的介绍&amp;nbsp;　　Spring框架是一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。  &amp;nbsp;　　记录了一些关于框架特点和特性以及Spring工作流程图。比如：IOC 、AOP的底层原理，属性注入，注解，bean管理">
 <meta name="keywords" content="框架,学习,spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring 框架学习">
 <meta property="og:url" content="https://www.shelhon.cn/2018/07/23/post3/index.html">
 <meta property="og:site_name" content="无问西东">
-<meta property="og:description" content="spring框架的介绍&amp;nbsp;　　Spring框架是一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。 &amp;nbsp;　　记录了一些关于框架特点和特性以及Spring工作流程图。比如：IOC 、AOP的底层原理，属性注入，注解，bean管理">
+<meta property="og:description" content="spring框架的介绍&amp;nbsp;　　Spring框架是一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。  &amp;nbsp;　　记录了一些关于框架特点和特性以及Spring工作流程图。比如：IOC 、AOP的底层原理，属性注入，注解，bean管理">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shelhon.cn/2018/07/23/post3/1.png">
-<meta property="og:updated_time" content="2018-07-23T05:45:58.850Z">
+<meta property="og:updated_time" content="2018-07-23T06:44:44.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring 框架学习">
-<meta name="twitter:description" content="spring框架的介绍&amp;nbsp;　　Spring框架是一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。 &amp;nbsp;　　记录了一些关于框架特点和特性以及Spring工作流程图。比如：IOC 、AOP的底层原理，属性注入，注解，bean管理">
+<meta name="twitter:description" content="spring框架的介绍&amp;nbsp;　　Spring框架是一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。  &amp;nbsp;　　记录了一些关于框架特点和特性以及Spring工作流程图。比如：IOC 、AOP的底层原理，属性注入，注解，bean管理">
 <meta name="twitter:image" content="https://www.shelhon.cn/2018/07/23/post3/1.png">
 
 
@@ -328,7 +328,7 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2018-07-23T13:45:58+08:00" content="2018-07-23">
+            <time itemprop="dateUpdated" datetime="2018-07-23T14:44:44+08:00" content="2018-07-23">
                 2018-07-23
             </time>
             </span>
@@ -422,12 +422,14 @@
       
 
       
-        <h1 id="spring框架的介绍"><a href="#spring框架的介绍" class="headerlink" title="spring框架的介绍"></a><strong>spring框架的介绍</strong></h1><p>&nbsp;　　Spring框架是一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。</p>
+        <ul>
+<li><strong>spring框架的介绍</strong><br>&nbsp;　　Spring框架是一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。</li>
+</ul>
 <p>&nbsp;　　记录了一些关于框架特点和特性以及Spring工作流程图。<br>比如：IOC 、AOP的底层原理，属性注入，注解，bean管理</p>
 <a id="more"></a>
-<h2 id="一、-一些基本特性"><a href="#一、-一些基本特性" class="headerlink" title="一、 一些基本特性"></a>一、 一些基本特性</h2><p><strong>轻量</strong>：大小与开销轻量级，完整的spring框架可以在大小只有1MB多的JAR文件中发布，且spring框架是非侵入式的，spring应用不依赖于spring特定类。<br><strong>控制反转</strong>：Spring通过一种称为控制反转的（IOC）的技术促进松耦合。当应用了IOC，一个对象依赖的其他对象通过被动的方式传递进来，而不是对象自己创建或者查找依赖对象。不是对象从容器中查找依赖，而是容器在对象初始化的不等对象请求就主动依赖传递过去.把对象的创建不是通过new方式，而是交给spring配置创建类对象。<br><strong>面向切面</strong>：Spring提供面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务进行内聚性的开发（AOP）。<br><strong>容器</strong>：Spring包含并管理应用对象的配置和生命周期，可以配置每个bean如何被创建——基于一个可配置原型（prototype），你的bean可以可以创建一个单独的实例，或每次需要都生成一个新的实例——以及他们是如何相互关联。<br><strong>框架</strong>：Spring框架可以将简单的组件配置，组合成为复杂的应用。在Spring应用对象被声明组合，典型是在一个XML文件里面，Spring也提供许多基础功能（事务管理，持久化框架集成，自己开发应用逻辑）</p>
+<h1 id="一、-一些基本特性"><a href="#一、-一些基本特性" class="headerlink" title="一、 一些基本特性"></a>一、 一些基本特性</h1><p><strong>轻量</strong>：大小与开销轻量级，完整的spring框架可以在大小只有1MB多的JAR文件中发布，且spring框架是非侵入式的，spring应用不依赖于spring特定类。<br><strong>控制反转</strong>：Spring通过一种称为控制反转的（IOC）的技术促进松耦合。当应用了IOC，一个对象依赖的其他对象通过被动的方式传递进来，而不是对象自己创建或者查找依赖对象。不是对象从容器中查找依赖，而是容器在对象初始化的不等对象请求就主动依赖传递过去.把对象的创建不是通过new方式，而是交给spring配置创建类对象。<br><strong>面向切面</strong>：Spring提供面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务进行内聚性的开发（AOP）。<br><strong>容器</strong>：Spring包含并管理应用对象的配置和生命周期，可以配置每个bean如何被创建——基于一个可配置原型（prototype），你的bean可以可以创建一个单独的实例，或每次需要都生成一个新的实例——以及他们是如何相互关联。<br><strong>框架</strong>：Spring框架可以将简单的组件配置，组合成为复杂的应用。在Spring应用对象被声明组合，典型是在一个XML文件里面，Spring也提供许多基础功能（事务管理，持久化框架集成，自己开发应用逻辑）</p>
 <hr>
-<h2 id="二、-Spring流程图"><a href="#二、-Spring流程图" class="headerlink" title="二、 Spring流程图"></a>二、 Spring流程图</h2><img src="/2018/07/23/post3/1.png">
+<h1 id="二、-Spring流程图"><a href="#二、-Spring流程图" class="headerlink" title="二、 Spring流程图"></a>二、 Spring流程图</h1><img src="/2018/07/23/post3/1.png">
 
       
     </div>
@@ -684,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#spring框架的介绍"><span class="nav-number">1.</span> <span class="nav-text">spring框架的介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-一些基本特性"><span class="nav-number">1.1.</span> <span class="nav-text">一、 一些基本特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、-Spring流程图"><span class="nav-number">1.2.</span> <span class="nav-text">二、 Spring流程图</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-一些基本特性"><span class="nav-number">1.</span> <span class="nav-text">一、 一些基本特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-Spring流程图"><span class="nav-number">2.</span> <span class="nav-text">二、 Spring流程图</span></a></li></ol></div>
             
 
           </div>
