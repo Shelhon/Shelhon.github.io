@@ -12,6 +12,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 
   
@@ -20,17 +30,6 @@
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
   <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-  
-  <script>
-  (function(){
-    if(''){
-      if (prompt('请输入文章密码') !== ''){
-        alert('密码错误');
-        history.back();
-      }
-    }
-  })();
-  </script>
   
   
 
@@ -305,7 +304,7 @@
                 目前共计 6 个标签
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/心情随笔/" style="font-size: 12px; color: #ccc">-心情随笔</a> <a href="/tags/GitHub/" style="font-size: 12px; color: #ccc">GitHub</a> <a href="/tags/spring/" style="font-size: 12px; color: #ccc">spring</a> <a href="/tags/博客/" style="font-size: 12px; color: #ccc">博客</a> <a href="/tags/学习/" style="font-size: 30px; color: #111">学习</a> <a href="/tags/框架/" style="font-size: 12px; color: #ccc">框架</a>
+              <a href="/tags/心情随笔/" style="font-size: 12px; color: #ccc">-心情随笔</a> <a href="/tags/GitHub/" style="font-size: 12px; color: #ccc">GitHub</a> <a href="/tags/spring/" style="font-size: 12px; color: #ccc">spring</a> <a href="/tags/博客/" style="font-size: 12px; color: #ccc">博客</a> <a href="/tags/学习/" style="font-size: 12px; color: #ccc">学习</a> <a href="/tags/框架/" style="font-size: 12px; color: #ccc">框架</a>
             </div>
           </div>
         

@@ -12,6 +12,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 
   
@@ -20,17 +30,6 @@
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
   <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-  
-  <script>
-  (function(){
-    if(''){
-      if (prompt('请输入文章密码') !== ''){
-        alert('密码错误');
-        history.back();
-      }
-    }
-  })();
-  </script>
   
   
 
@@ -341,7 +340,7 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2018-07-23T19:18:58+08:00" content="2018-07-23">
+            <time itemprop="dateUpdated" datetime="2018-07-23T19:34:54+08:00" content="2018-07-23">
                 2018-07-23
             </time>
             </span>
@@ -349,28 +348,6 @@
 		  
 		 
 		 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/备忘录/" itemprop="url" rel="index">
-                    <span itemprop="name">备忘录</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
