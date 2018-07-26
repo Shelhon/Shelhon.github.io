@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring 框架学习(二)]]></title>
+    <url>%2Fposts%2F14042445.html</url>
+    <content type="text"><![CDATA[大概的包含内容 基于aspectj的注解aop操作 spring的jdbcTemplate操作 实现crud操作 - 增加、修改、删除，调用模板update方法 - 查询某个值时候，调用queryForObject方法 - 自己写实现类封装数据 - 查询对象，调用queryForObject方法 - 查询list集合，调用query方法 spring配置连接池 配置c3p0连接池 dao注入jdbcTemplate操作 spring事务管理 事务概念 spring进行事务管理api spring针对不同的dao层框架提供不同的实现类 spring进行事务配置（声明式） 基于xml配置文件 基于注解方式]]></content>
+      <categories>
+        <category>学习过程</category>
+      </categories>
+      <tags>
+        <tag>框架</tag>
+        <tag>学习</tag>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用IDEA遇到的问题记录]]></title>
     <url>%2Fposts%2Fada285ba.html</url>
     <content type="text"><![CDATA[人可以做他想做的，但不能要他想要的 记录在使用idea的过程中遇到的问题 比如 配置环境遇到的问题 导入jar包 依赖 maven Tomcat jdk和jar包版本的问题 将会比较随意的记录 配置环境说到底原本最初是用idea，后来实习公司又要用eclipse，不怎么熟悉这个开发工具，本来就艰难，jdk就用一开始的1.8版本jdk，结果按照公司要求用回jdk1.7和Tomcat1.7的时候，eclipse就无法打开了。因为photon不支持1.8以下的版本。果断回头idea。 关于那个新建项目以后的文件目录格式，可以创建后自己修改。不用太纠结位置。 导入jar包要注意框架的版本，因为不同版本，可能jar包就取消了，或者集合在一起了，这个必须得注意。 配置依赖以后补 maven还没弄 Tomcat tomcat1.7版本不支持xml3.0以上的版本 然而idea创建web.xml的时候基本默认是4.0版本 可以通过修改web.xml里面的版本数字来直接改变，改成3就行]]></content>
@@ -8,9 +21,9 @@
         <category>踩坑</category>
       </categories>
       <tags>
+        <tag>学习</tag>
         <tag>IDEA</tag>
         <tag>踩坑</tag>
-        <tag>学习</tag>
       </tags>
   </entry>
   <entry>
@@ -21,8 +34,8 @@
         <category>学习过程</category>
       </categories>
       <tags>
-        <tag>学习</tag>
         <tag>框架</tag>
+        <tag>学习</tag>
         <tag>spring</tag>
       </tags>
   </entry>
