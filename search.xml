@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[struts2学习]]></title>
     <url>%2Fposts%2Fc240a0d6.html</url>
-    <content type="text"><![CDATA[主要内容 stuts2入门 struts2数据操作 struts2值栈 struts2拦截器]]></content>
+    <content type="text"><![CDATA[主要内容 stuts2入门 struts2数据操作 struts2值栈 struts2拦截器 Struts2 概述 struts2框架应用javaee三层结构中的web层框架 struts2 是struts1和webwork基础上发展全新的框架、 struts2解决问题 struts2 版本 struts2-2.3.24 web层常用框架 struts2 springMVC struts2 框架入门第一个例子 老规矩导入jar包 创建action 123456789public class HelloAction &#123; /* (1)每次访问servlet的时候，都会访问service方法 - 写类继承HTTPServlet，重写类里面的方法 (2)访问action的时候 每次访问action默认执行execute方法 */ public String execute()&#123; return "ok";&#125;&#125; 配置action类访问路径(1)、创建struts2核心配置文件核心配置文件必须是固定名称和位置位置必须是再src下面，名称必须是struts.xml(2)、引入dtd约束 123&lt;!DOCTYPE struts PUBLIC &quot;-//Apache Software Foundation//DTD Struts Configuration 2.3//EN&quot; &quot;http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt; (3)、action配置 1234567&lt;package name=&quot;hellodemo&quot; extends=&quot;struts-default&quot; namespace=&quot;/&quot;&gt; &lt;!-- name: 访问名称 --&gt; &lt;action name=&quot;hello&quot; class=&quot;cn.shelhon.action.HelloAction&quot;&gt; &lt;!-- 配置方法的返回值到页面 --&gt; &lt;result name=&quot;ok&quot;&gt;/hello.jsp&lt;/result&gt; &lt;/action&gt;&lt;/package&gt; 访问路径http://127.0.0.1:8080/struts2/hello.action (4) 配置struts2过滤器 在Tomcat上面运行的时候，发现一直各种报错 12严重: Exception starting filter struts2java.lang.ClassNotFoundException: org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter 估计是在idea的时候，运行Tomcat时，maven依赖那里出现了问题。导入缺少了jar包，Tomcat运行不起来。最后在项目结构Artifacts里available Elements右键把里面的jar包导入到lib文件夹里。 ！！还有就是一定要把struts2.xml文件放到resources文件夹里 基本流程：]]></content>
       <categories>
         <category>学习过程</category>
       </categories>
