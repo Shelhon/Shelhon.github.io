@@ -3,13 +3,13 @@
   <entry>
     <title><![CDATA[struts2学习(二）]]></title>
     <url>%2Fposts%2F3a01fcdf.html</url>
-    <content type="text"><![CDATA[主要内容 struts2值栈struts2拦截器 struts2值栈ognl概述 EL表达式在jsp中获取域对象里面的值 OGNL也是一种表达式，这个表达式功能更加强大（1）在struts2里面操作值栈数据（2）一般把ognl在struts2操作：和struts2标签一起使用操作值栈 OGNL不是struts2的一部分，单独的项目，经常和struts2一起使用（1）使用ognl时候首先导入jar包，struts2提供jar包 OGNL入门案例 使用ognl+struts2标签实现计算字符串长度支持对象方法调用，比如objName.methodName()在Java代码中，调用字符串length() 使用struts2标签 （1）使用jstl时候，导入jar包之外，在jsp页面中引入标签库使用struts2标签时候，在jsp中引入标签库 &lt;%@ taglib prefix=”s” uri=”/struts-tags” %&gt; （2）使用struts2标签实现操作1&lt;!-- 使用ognl加struts2标签实现计算字符串长度 --&gt; &lt;s:property value=&quot;&apos;asdasd&apos;.length()&quot;/&gt; 什么是值栈 之前在web阶段，在servlet里面进行操作，把数据放到域对象里面，在页面中使用el表达式获取到，域对象在一定范围内，存值和取值 在struts2里面提供本身一种存储机制，类似于域对象，是值栈，可以存值和取值（1）在action里面把数据放到值栈里面，在页面中获取到值栈数据 servlet和action区别（1）Servlet：默认在第一次访问时候创建，创建一次，单实例对象（2）Action：访问时候创建，每次访问action时候，都会创建action对象，创建多次，多实例对象 值栈存储位置（1）每次访问action时候，都会创建action对象，（2）在每个action对象里面都会有一个值栈对象（只有一个） 获取值栈对象 获取值栈对象有多种方式（1）常用方式：使用ActionContext类里面的方法得到值栈对象1234567public String execute() throws Exception &#123; //获取ActionContext类对象 ActionContext context =ActionContext.getContext(); //调用方法得到值栈 ValueStack stack1 = context.getValueStack(); return NONE;&#125; 值栈内部结构 值栈分为两部分： 第一部分 root，结构是list集合 一般操作都是root里面数据 第二部分 context，结构map集合]]></content>
+    <content type="text"><![CDATA[主要内容 struts2值栈struts2拦截器 struts2值栈ognl概述 EL表达式在jsp中获取域对象里面的值 OGNL也是一种表达式，这个表达式功能更加强大（1）在struts2里面操作值栈数据（2）一般把ognl在struts2操作：和struts2标签一起使用操作值栈 OGNL不是struts2的一部分，单独的项目，经常和struts2一起使用（1）使用ognl时候首先导入jar包，struts2提供jar包 OGNL入门案例 使用ognl+struts2标签实现计算字符串长度支持对象方法调用，比如objName.methodName()在Java代码中，调用字符串length() 使用struts2标签 （1）使用jstl时候，导入jar包之外，在jsp页面中引入标签库使用struts2标签时候，在jsp中引入标签库 &lt;%@ taglib prefix=”s” uri=”/struts-tags” %&gt; （2）使用struts2标签实现操作1&lt;!-- 使用ognl加struts2标签实现计算字符串长度 --&gt; &lt;s:property value=&quot;&apos;asdasd&apos;.length()&quot;/&gt; 什么是值栈 之前在web阶段，在servlet里面进行操作，把数据放到域对象里面，在页面中使用el表达式获取到，域对象在一定范围内，存值和取值 在struts2里面提供本身一种存储机制，类似于域对象，是值栈，可以存值和取值（1）在action里面把数据放到值栈里面，在页面中获取到值栈数据 servlet和action区别（1）Servlet：默认在第一次访问时候创建，创建一次，单实例对象（2）Action：访问时候创建，每次访问action时候，都会创建action对象，创建多次，多实例对象 值栈存储位置（1）每次访问action时候，都会创建action对象，（2）在每个action对象里面都会有一个值栈对象（只有一个） 获取值栈对象 获取值栈对象有多种方式（1）常用方式：使用ActionContext类里面的方法得到值栈对象1234567public String execute() throws Exception &#123; //获取ActionContext类对象 ActionContext context =ActionContext.getContext(); //调用方法得到值栈 ValueStack stack1 = context.getValueStack(); return NONE;&#125; 值栈内部结构 值栈分为两部分： 第一部分 root，结构是list集合 一般操作都是root里面数据 第二部分 context，结构map集合 struts2里面标签 s:debug，使用这个标签可以查看值栈结构和存储值（1）访问action，执行action的方法有返回值，配置返回值到jsp页面中，在jsp页面中使用这个标签 1&lt;!--struts2标签查看值栈结构--&gt; &lt;s:debug&gt;&lt;/s:debug&gt; 就会多一个debug按钮来查看信息 action对象里面有值栈对象值栈对象里面有action引用 向值栈放数据向值栈放数据多种方式第一种 获取值栈对象，调用值栈对象里面的 set 方法 12345678public String execute() throws Exception &#123; //第一种方法 获取值栈对象里面的set方法 //获取值栈对象 ActionContext context = ActionContext.getContext(); ValueStack stack = context.getValueStack(); //调用方法set方法 stack.set("username","shelhon"); return "ok"; debug页面就会多一个入栈 java.util.HashMap 第二种 获取值栈对象，调用值栈对象里面的 push方法12//调用方法push方法 stack.push("abdc"); 又多一个入栈 ：java.lang.String 第三种 在action定义变量，生成变量的get方法 123456789private String name;public String getName() &#123; return name;&#125;@Override public String execute() throws Exception &#123; //在执行方法里面向变量来赋值 name ="asdasd"; return "ok";&#125; 这种方法直接在原来的值栈上面写入数据，不需要生成新的值栈来存储，可以节省空间 向值栈放对象 实现步骤 第一步 定义对象变量1//1定义变量 private User user = new User(); 第二步 生成变量的get方法123public User getUser() &#123; return user;&#125; 第三步 在执行的方法里面向对象中设置值1234567public String execute() throws Exception &#123; //3 向值栈的user里面放数据 user.setUsername(&quot;luck&quot;); user.setPassword(&quot;123&quot;); user.setAddress(&quot;gz&quot;); return &quot;ok&quot;;&#125; 向值栈放list集合第一步 定义list集合变量1private List&lt;User&gt; list = new ArrayList&lt;User&gt;(); 第二步 生成变量的get方法123public List&lt;User&gt; getList() &#123; return list;&#125; 第三步 在执行的方法里面向list集合设置值123456789101112131415public String execute() throws Exception &#123; User user1= new User(); user1.setUsername("ben"); user1.setAddress("gz"); user1.setPassword("111"); User user2 =new User(); user2.setUsername("jack"); user2.setPassword("009"); user2.setAddress("cd"); list.add(user1); list.add(user2); return "ok";&#125; 从值栈获取数据使用struts2的标签+ognl表达式获取值栈数据&lt;s:property value=”ognl表达式”/&gt; 获取字符串 向值栈放字符串 12345678910111213public class ValueStackAction extends ActionSupport &#123; //定义变量 private String username; public String getUsername()&#123; return username; &#125; @Override public String execute() throws Exception &#123; //给变量赋值 username="shelhon"; return "ok"; &#125;&#125; 在jsp使用struts2标签+ognl表达式获取 1&lt;s:property value=&quot;username&quot;/&gt; 获取对象 向值栈放对象 123456789101112131415public void setUser(User user) &#123; this.user = user;&#125;private User user =new User();public User getUser() &#123; return user;&#125;public String execute() throws Exception &#123; user.setUsername("asd"); user.setPassword("222"); user.setAddress("gz"); return "ok"; 在页面中获取值123&lt;s:property value=&quot;user.username&quot;/&gt;&lt;s:property value=&quot;user.password&quot;/&gt;&lt;s:property value=&quot;user.address&quot;/&gt; 获取list集合三种方法一开始先把list放到值栈去1234567891011121314151617private List&lt;User&gt; list = new ArrayList&lt;User&gt;();public List&lt;User&gt; getList() &#123; return list;&#125;@Override public String execute() throws Exception &#123; User user1= new User(); user1.setUsername("qsx"); user1.setAddress("gz"); user1.setPassword("111"); User user2 =new User(); user2.setUsername("jack"); user2.setPassword("009"); user2.setAddress("cd"); list.add(user1); list.add(user2); return "ok"; 第一种 1234567&lt;!-- 第一种方式 --&gt; &lt;s:property value=&quot;list[0].username&quot;/&gt;&lt;s:property value=&quot;list[0].possword&quot;/&gt;&lt;s:property value=&quot;list[0].address&quot;/&gt;&lt;s:property value=&quot;list[1].username&quot;/&gt;&lt;s:property value=&quot;list[1].possword&quot;/&gt;&lt;s:property value=&quot;list[1].address&quot;/&gt; 第二种 1234567&lt;!-- 使用struts2标签，类似jst1的foreach标签 &lt;s:iterator&gt;遍历值栈的list集合--&gt;&lt;s:iterator value=&quot;list&quot;&gt;&lt;!-- 遍历list得到list里面每一个user对象 --&gt; &lt;s:property value=&quot;username&quot;/&gt; &lt;s:property value=&quot;password&quot;/&gt; &lt;s:property value=&quot;address&quot;/&gt; &lt;/s:iterator&gt; 第三种1234567&lt;s:iterator value=&quot;list&quot; var=&quot;user&quot;&gt; &lt;!-- 遍历值栈list集合，得到每个user对象 机制：把每次遍历出来的user对象放到context里面 获取context里面的数据特点：写ognl表达式， 使用特殊符号 # --&gt; &lt;s:property value=&quot;#user.username&quot;/&gt; &lt;s:property value=&quot;#user.username&quot;/&gt; &lt;s:property value=&quot;#user.username&quot;/&gt;&lt;/s:iterator&gt;]]></content>
       <categories>
         <category>学习过程</category>
       </categories>
       <tags>
-        <tag>框架</tag>
         <tag>学习</tag>
+        <tag>框架</tag>
         <tag>struts2</tag>
       </tags>
   </entry>
@@ -21,8 +21,8 @@
         <category>学习过程</category>
       </categories>
       <tags>
-        <tag>框架</tag>
         <tag>学习</tag>
+        <tag>框架</tag>
         <tag>struts2</tag>
       </tags>
   </entry>
@@ -34,8 +34,8 @@
         <category>学习过程</category>
       </categories>
       <tags>
-        <tag>框架</tag>
         <tag>学习</tag>
+        <tag>框架</tag>
         <tag>spring</tag>
       </tags>
   </entry>
@@ -47,9 +47,9 @@
         <category>踩坑</category>
       </categories>
       <tags>
-        <tag>学习</tag>
         <tag>IDEA</tag>
         <tag>踩坑</tag>
+        <tag>学习</tag>
       </tags>
   </entry>
   <entry>
@@ -60,8 +60,8 @@
         <category>学习过程</category>
       </categories>
       <tags>
-        <tag>框架</tag>
         <tag>学习</tag>
+        <tag>框架</tag>
         <tag>spring</tag>
       </tags>
   </entry>
