@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mybatis]]></title>
+    <url>%2Fposts%2Fda3e1361.html</url>
+    <content type="text"><![CDATA[Mybatis框架学习一、Mybatis入门二、Dao开发方法三、SqlMapConfig.xml 配置文件四、Mapper.xml 映射文件五、关联查询六、查询缓存七、与Spring整合八、Mybatis 逆向工程 Mybatis入门Mybatis开发dao两种方法：一、原始dao开发方法，需要编写dao接口和dao实现类（跟ibatis一样）二、Mybatis的mapper接口（相当于dao接口）代理开发方法。 原生JDBC程序的总结环境学习用的是JDK 1.7mysql:5.146 创建实验数据库从传智的课件里导入sql脚本生成数据库的表和数据里面有一些用户表、订单、订单细节、价格表 jdbc程序1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859import java.sql.*;/** * @author: Shelhon * @create： 2018/9/17 14:31 * DESCRIPTION:通过单独的JDBC程序来总结其中的问题 */ public class JdbcTest &#123; public static void main(String[] args) &#123; Connection connection = null; PreparedStatement preparedStatement = null; ResultSet resultSet = null; try &#123; //加载数据库驱动 Class.forName("com.mysql.jdbc.Driver"); //通过驱动管理类获取数据库链接 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybatis?charac terEncoding=utf-8", "root", "12345"); //定义sql语句 ?表示占位符 String sql = "select * from user where username = ?"; //获取预处理statement preparedStatement = connection.prepareStatement(sql); //设置参数，第一个参数为sql语句中参数的序号（从1开始），第二个 参数为设置的参数值 preparedStatement.setString(1, "王五"); //向数据库发出sql执行查询，查询出结果集 resultSet = preparedStatement.executeQuery(); //遍历查询结果集 while (resultSet.next()) &#123; System.out.println(resultSet.getString("id") + " " + resultSet.getString("username")); &#125; &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; finally &#123; //释放资源 if(resultSet != null) &#123; try &#123; resultSet.close(); &#125; catch (SQLException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; &#125; if (preparedStatement != null) &#123; try &#123; preparedStatement.close(); &#125; catch (SQLException e) &#123; //TODO Auto-generated catch block e.printStackTrace(); &#125; &#125; if (connection != null) &#123; try &#123; connection.close(); &#125; catch (SQLException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; &#125; &#125; &#125;&#125; jdbc编程步骤1、 加载数据库驱动2、 创建并获取数据库链接3、 创建 jdbcstatement 对象4、 设置 sql 语句5、 设置 sql 语句中的参数(使用 preparedStatement)6、 通过 statement 执行 sql 并获取结果7、 对 sql 执行结果进行解析处理 8、 释放资源(resultSet、preparedstatement、connection) 问题总结 数据库连接，使用时才创建，不用就立即释放，对数据库进行频繁连接开启和关闭，造成数据库资源浪费，影响了数据库性能解决方案：使用数据库连接池来管理数据库连接 将sql语句硬编码到Java代码中，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动 需要改变 java 代码。 使用 preparedStatement 向占有位符号传参数存在硬编码，因为 sql 语句的 where 条件不 一定，可能多也可能少，修改 sql 还要修改代码，系统不易维护。 对结果集解析存在硬编码（查询列名） ，sql 变化导致解析代码变化，系统不易维护，如 果能将数据库记录封装成 pojo 对象解析比较方便。 Mybatis框架whatMyBatis是一个优秀的持久层框架，它对jdbc的操作数据库的过程进行封装，使开发者 只需要关注 SQL 本身，而不需要花费精力去处理例如注册驱动、创建connection、创建 statement、手动设置参数、结果集检索等jdbc繁杂的过程代码。 Mybatis通过xml或注解的方式将要执行的各种statement（statement、 preparedStatemnt、CallableStatement）配置起来，并通过java对象和statement中的sql 进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射成java对象并 返回。]]></content>
+      <categories>
+        <category>学习过程</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>学习</tag>
+        <tag>Mybatis</tag>
+        <tag>框架</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数据库系统篇]]></title>
     <url>%2Fposts%2F3b200332.html</url>
     <content type="text"><![CDATA[系统篇内容]]></content>
