@@ -21,7 +21,10 @@
         <category>学习过程</category>
       </categories>
       <tags>
-        <tag>数据库 - 学习 - SpringMVC - 框架</tag>
+        <tag>数据库</tag>
+        <tag>学习</tag>
+        <tag>SpringMVC</tag>
+        <tag>框架</tag>
       </tags>
   </entry>
   <entry>
@@ -34,8 +37,8 @@
       <tags>
         <tag>数据库</tag>
         <tag>学习</tag>
-        <tag>Mybatis</tag>
         <tag>框架</tag>
+        <tag>Mybatis</tag>
       </tags>
   </entry>
   <entry>
@@ -48,8 +51,8 @@
       <tags>
         <tag>数据库</tag>
         <tag>学习</tag>
-        <tag>Mybatis</tag>
         <tag>框架</tag>
+        <tag>Mybatis</tag>
       </tags>
   </entry>
   <entry>
