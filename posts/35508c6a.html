@@ -97,10 +97,14 @@
 <meta property="og:site_name" content="无问西东">
 <meta property="og:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-06T04:35:18.419Z">
+<meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/1.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/3.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/4.png">
+<meta property="og:updated_time" content="2018-11-07T12:11:16.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
+<meta name="twitter:image" content="https://www.shelhon.cn/posts/35508c6a/1.png">
 
 
 
@@ -329,8 +333,8 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2018-11-06T12:35:18+08:00" content="2018-11-06">
-                2018-11-06
+            <time itemprop="dateUpdated" datetime="2018-11-07T20:11:16+08:00" content="2018-11-07">
+                2018-11-07
             </time>
             </span>
         
@@ -386,7 +390,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  185
+                  789
                 </span>
               
 
@@ -402,7 +406,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -431,7 +435,162 @@
 <p>以下的每一章内容就按公开课的每一课时的内容来划分。</p>
 <hr>
 <a id="more"></a>
-<h1 id="方程组的几何解释"><a href="#方程组的几何解释" class="headerlink" title="方程组的几何解释"></a>方程组的几何解释</h1><p>post18</p>
+<h1 id="方程组的几何解释"><a href="#方程组的几何解释" class="headerlink" title="方程组的几何解释"></a>方程组的几何解释</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>一、 行图像、 列图像</p>
+<p>用以下方程式为例子</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+2x-y=0 \\
+-x+2y=3  
+\end{cases} \tag{1}</script><p>写成矩阵的形式就是</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} 
+2 & -1  \\ 
+-1 & 2  
+\end{bmatrix}
+\begin{bmatrix} 
+x\\ 
+y
+\end{bmatrix}  = 
+\begin{bmatrix} 
+0\\ 
+3
+\end{bmatrix}\\
+　　　A 　 　X　=　 b　　\tag{2}</script><script type="math/tex; mode=display">
+其中A=\bigl[ \begin{smallmatrix} 2&-1\\ -1 & 2 \end{smallmatrix} \bigr] 被称为系数矩阵（coefficient matrix）\\
+未知数向量通常记为X=\bigl[ \begin{smallmatrix}x\\ y \end{smallmatrix} \bigr]</script><p>而等号右侧的向量记为b，线性方程组记为Ax=b</p>
+<p><strong>Row picture行图像</strong></p>
+<img src="/posts/35508c6a/1.png" title="} 行图像遵从解析几何的描述，每个方程在平面上的图像为一条之间，找到符合方程的两个数组，确定出x-y平面上的两个点，连接两点可以画出该方程所代表的直线，两直线交点即为方程组的解，x=1,y=2. **Column picture列图像** 在列图像中，我们将系数矩阵写成列向量的形式，则求解的原方程变为寻找列向量的线性组合（linear combination）来构成向量**b**. $$ x \begin{bmatrix} 2\\ -1 \end{bmatrix} +y \begin{bmatrix} -1\\ 2 \end{bmatrix}= \begin{bmatrix} 0\\ 3 \end{bmatrix} $$ {% asset_img 2.png">
+<p>当任意取x，y,那么所有的线性组合是什么？那么两个向量的组合会布满整个坐标平面。</p>
+<hr>
+<h2 id="三元方程"><a href="#三元方程" class="headerlink" title="三元方程"></a>三元方程</h2><p>先写方程式</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+2x-y　　=0 \\
+-x+2y-z=3\\
+　-3y+4z=4
+\end{cases} \tag{3}</script><p>无论是行图像法也行，列图像法也行，但是列图像是更重要的知识点</p>
+<script type="math/tex; mode=display">
+A=\begin{bmatrix}
+2 & -1 & 0\\
+-1& 2  &-1\\
+0 & -3 & 4
+\end{bmatrix}\tag{4}
+ 　　b=
+\begin{bmatrix}
+0\\
+-1\\
+4
+\end{bmatrix}</script><p>这是三元方程组的简洁形式</p>
+<p><strong>Row picture行图像</strong></p>
+<img src="/posts/35508c6a/3.png">
+<p>方程的行图像比较复杂，只要知道行图像是由三个平面构成的，每一个方程都是三维空间内的一个平面，方程组的解为三个平面的交点。</p>
+<p><strong>Column picture列图像</strong></p>
+<script type="math/tex; mode=display">
+x\begin{bmatrix}
+2 \\
+-1\\
+0 
+\end{bmatrix}\tag{5}
++y
+\begin{bmatrix}
+-1\\
+2\\
+-3
+\end{bmatrix}
++z
+\begin{bmatrix}
+0\\
+-1\\
+4
+\end{bmatrix} =
+\begin{bmatrix}
+0\\
+-1\\
+4
+\end{bmatrix}</script><p>画图如下</p>
+<img src="/posts/35508c6a/4.png">
+<p>通过列图像来计算出解，但是有时候这个方法也不一定好用，因此后面会学习消元法。</p>
+<p>将第五个公式稍微修改右侧的向量，变为第一列和第二列的和</p>
+<script type="math/tex; mode=display">
+x\begin{bmatrix}
+2 \\
+-1\\
+0 
+\end{bmatrix}\tag{6}
++y
+\begin{bmatrix}
+-1\\
+2\\
+-3
+\end{bmatrix}
++z
+\begin{bmatrix}
+0\\
+-1\\
+4
+\end{bmatrix} =
+\begin{bmatrix}
+1\\
+1\\
+-3
+\end{bmatrix}</script><p>然后得出的值就是x=1,y=1,z=0<br>这样修改后的列图像基本没变化，三个向量还是一样，只是需要寻找一个新的组合。但是对于行图像来说，三个平面都会改变了。</p>
+<p>思考：是不是对于所有b，方程Ax=b都有解。<br>列的线性组合是否能覆盖整个三维空间。</p>
+<p>通过反例证明：若三个向量在同一个平面内，那么只有当b也在这个平面内，才有解。若b不在该平面内，则三个列向量无论怎么组合也得不到平面外的b，此时矩阵A为奇异阵或者不可逆矩阵。在矩阵A不可逆的条件下，不是所有的b都能令方程Ax=b有解。</p>
+<p>想象：九维的向量矩阵，九个方程九个变量。<br>如果有一各列向量与另外的某一列相同，那么就会没有意义，这样就没办法求出所有的b的解，该九维的向量只能在八维中求解。</p>
+<h2 id="矩阵与向量的乘法"><a href="#矩阵与向量的乘法" class="headerlink" title="矩阵与向量的乘法"></a>矩阵与向量的乘法</h2><p>首先构造一个矩阵Ax=b</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} 
+2 & 5  \\ 
+1 &3
+\end{bmatrix}
+\begin{bmatrix} 
+1  \\ 
+ 2  
+\end{bmatrix}\tag{7}</script><p>有两种方法</p>
+<ul>
+<li><p>取1个第一列，2个第二列，然后相加</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} 
+2 & 5  \\ 
+1 &3
+\end{bmatrix}
+\begin{bmatrix} 
+1  \\ 
+2  
+\end{bmatrix}\tag{8}=
+1\begin{bmatrix} 
+2  \\ 
+1 
+\end{bmatrix}
+2\begin{bmatrix} 
+5 \\ 
+3
+\end{bmatrix}=
+\begin{bmatrix} 
+12\\ 
+7
+\end{bmatrix}</script></li>
+<li><p>通过矩阵A的行向量和X向量进行点积计算：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} 
+2 & 5  \\ 
+1 &3
+\end{bmatrix}
+\begin{bmatrix} 
+1  \\ 
+2  
+\end{bmatrix}\tag{9}=
+\begin{bmatrix} 
+1×2+2×5  \\ 
+1 ×1+2×3
+\end{bmatrix}=
+\begin{bmatrix} 
+12\\ 
+7
+\end{bmatrix}</script></li>
+</ul>
+<h1 id="矩阵消元"><a href="#矩阵消元" class="headerlink" title="矩阵消元"></a>矩阵消元</h1><hr>
+<p>post18</p>
 
       
     </div>
@@ -688,7 +847,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方程组的几何解释"><span class="nav-number">1.</span> <span class="nav-text">方程组的几何解释</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方程组的几何解释"><span class="nav-number">1.</span> <span class="nav-text">方程组的几何解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三元方程"><span class="nav-number">1.2.</span> <span class="nav-text">三元方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵与向量的乘法"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵与向量的乘法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵消元"><span class="nav-number">2.</span> <span class="nav-text">矩阵消元</span></a></li></ol></div>
             
 
           </div>
@@ -730,7 +889,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">111.5k</span>
+    <span title="Site words total count">112.2k</span>
   
 </div>
 

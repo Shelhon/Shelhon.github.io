@@ -98,7 +98,7 @@
 <meta property="og:description" content="莫名其妙第一篇血崩">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shelhon.cn/posts/73626faf/cat.jpg">
-<meta property="og:updated_time" content="2018-11-06T08:50:17.652Z">
+<meta property="og:updated_time" content="2018-11-07T07:00:28.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一篇">
 <meta name="twitter:description" content="莫名其妙第一篇血崩">
@@ -331,8 +331,8 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2018-11-06T16:50:17+08:00" content="2018-11-06">
-                2018-11-06
+            <time itemprop="dateUpdated" datetime="2018-11-07T15:00:28+08:00" content="2018-11-07">
+                2018-11-07
             </time>
             </span>
         
@@ -388,7 +388,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  803
+                  892
                 </span>
               
 
@@ -554,13 +554,27 @@
  4 & 5 & 6  
  \end{array} 
  \right] \tag{10}</script><p>其中<code>\begin{array}{cc|c}</code>中的c表示居中对齐元素,<code>|</code>用来作为分割列的符号。</p>
-<h2 id="行间矩阵"><a href="#行间矩阵" class="headerlink" title="行间矩阵"></a>行间矩阵</h2><p>可以使用来缩小矩阵的尺寸，括号的选择在<code>bigl</code>和<code>bigr</code>的右侧输入，即使左右两边不对称也是可以的<br><code>\bigl(\begin{smallmatrix} ... \end{smallmatrix}\bigr)</code></p>
+<h2 id="行间矩阵"><a href="#行间矩阵" class="headerlink" title="行间矩阵"></a>行间矩阵</h2><p>可以使用来缩小矩阵的尺寸，括号的选择在<code>bigl</code>和<code>bigr</code>的右侧输入，即使左右两边不对称也是可以的 ，一般用于在文本段落中插入使用。</p>
+<p><code>\bigl(\begin{smallmatrix} ... \end{smallmatrix}\bigr)</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\bigl( \begin&#123;smallmatrix&#125; </span><br><span class="line">a&amp;b\\ </span><br><span class="line">c&amp;d </span><br><span class="line">\end&#123;smallmatrix&#125; \bigr)\tag&#123;11&#125;</span><br></pre></td></tr></table></figure>
 <script type="math/tex; mode=display">行间矩阵=
 \bigl( \begin{smallmatrix} 
 a&b\\ 
 c&d 
-\end{smallmatrix} \bigr)\tag{11}</script><hr>
+\end{smallmatrix} \bigr)\tag{11}</script><h1 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">2x-y=0 \\</span><br><span class="line">-x+2y=3  </span><br><span class="line">\end&#123;cases&#125; \tag&#123;12&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>效果图</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+2x-y=0 \\
+-x+2y=3  
+\end{cases} \tag{12}</script><h1 id="分段函数"><a href="#分段函数" class="headerlink" title="分段函数"></a>分段函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\</span><br><span class="line">q(x,t)= \begin&#123;cases&#125;(t-k+1)x^2,\quad \ \ &amp;   </span><br><span class="line">t\in\big(k-1,k-\dfrac&#123;1&#125;&#123;2&#125;\big],\\   </span><br><span class="line">(k-t)x^2, \quad \ \ &amp; t\in\big(k-\dfrac&#123;1&#125;&#123;2&#125;,k\big], </span><br><span class="line">\end&#123;cases&#125; \tag&#123;13&#125;</span><br><span class="line">\</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\
+q(x,t)= \begin{cases}(t-k+1)x^2,\quad \ \ &   
+t\in\big(k-1,k-\dfrac{1}{2}\big],\\   
+(k-t)x^2, \quad \ \ & t\in\big(k-\dfrac{1}{2},k\big], 
+\end{cases} \tag{13}
+\</script><hr>
 
       
     </div>
@@ -815,7 +829,7 @@ c&d
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些特殊符号"><span class="nav-number">1.</span> <span class="nav-text">一些特殊符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵的画法"><span class="nav-number">2.</span> <span class="nav-text">矩阵的画法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单Matrix"><span class="nav-number">2.1.</span> <span class="nav-text">简单Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带括号的Matrix"><span class="nav-number">2.2.</span> <span class="nav-text">带括号的Matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-left-…-right的方式"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用\left … \right的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换matrix"><span class="nav-number">2.2.2.</span> <span class="nav-text">替换matrix</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带省略符号的Matrix"><span class="nav-number">2.3.</span> <span class="nav-text">带省略符号的Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带参数的Matrix"><span class="nav-number">2.4.</span> <span class="nav-text">带参数的Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行间矩阵"><span class="nav-number">2.5.</span> <span class="nav-text">行间矩阵</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些特殊符号"><span class="nav-number">1.</span> <span class="nav-text">一些特殊符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵的画法"><span class="nav-number">2.</span> <span class="nav-text">矩阵的画法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单Matrix"><span class="nav-number">2.1.</span> <span class="nav-text">简单Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带括号的Matrix"><span class="nav-number">2.2.</span> <span class="nav-text">带括号的Matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-left-…-right的方式"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用\left … \right的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换matrix"><span class="nav-number">2.2.2.</span> <span class="nav-text">替换matrix</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带省略符号的Matrix"><span class="nav-number">2.3.</span> <span class="nav-text">带省略符号的Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带参数的Matrix"><span class="nav-number">2.4.</span> <span class="nav-text">带参数的Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行间矩阵"><span class="nav-number">2.5.</span> <span class="nav-text">行间矩阵</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方程组"><span class="nav-number">3.</span> <span class="nav-text">方程组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分段函数"><span class="nav-number">4.</span> <span class="nav-text">分段函数</span></a></li></ol></div>
             
 
           </div>
@@ -857,7 +871,7 @@ c&d
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">111.5k</span>
+    <span title="Site words total count">112.2k</span>
   
 </div>
 
