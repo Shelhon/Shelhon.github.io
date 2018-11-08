@@ -98,9 +98,12 @@
 <meta property="og:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/1.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/2.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/3.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/4.png">
-<meta property="og:updated_time" content="2018-11-07T12:11:16.567Z">
+<meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/5.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/6.png">
+<meta property="og:updated_time" content="2018-11-08T02:55:00.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
@@ -333,8 +336,8 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2018-11-07T20:11:16+08:00" content="2018-11-07">
-                2018-11-07
+            <time itemprop="dateUpdated" datetime="2018-11-08T10:55:00+08:00" content="2018-11-08">
+                2018-11-08
             </time>
             </span>
         
@@ -390,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  789
+                  1,407
                 </span>
               
 
@@ -406,7 +409,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  5
                 </span>
               
             </div>
@@ -459,7 +462,24 @@ y
 其中A=\bigl[ \begin{smallmatrix} 2&-1\\ -1 & 2 \end{smallmatrix} \bigr] 被称为系数矩阵（coefficient matrix）\\
 未知数向量通常记为X=\bigl[ \begin{smallmatrix}x\\ y \end{smallmatrix} \bigr]</script><p>而等号右侧的向量记为b，线性方程组记为Ax=b</p>
 <p><strong>Row picture行图像</strong></p>
-<img src="/posts/35508c6a/1.png" title="} 行图像遵从解析几何的描述，每个方程在平面上的图像为一条之间，找到符合方程的两个数组，确定出x-y平面上的两个点，连接两点可以画出该方程所代表的直线，两直线交点即为方程组的解，x=1,y=2. **Column picture列图像** 在列图像中，我们将系数矩阵写成列向量的形式，则求解的原方程变为寻找列向量的线性组合（linear combination）来构成向量**b**. $$ x \begin{bmatrix} 2\\ -1 \end{bmatrix} +y \begin{bmatrix} -1\\ 2 \end{bmatrix}= \begin{bmatrix} 0\\ 3 \end{bmatrix} $$ {% asset_img 2.png">
+<img src="/posts/35508c6a/1.png">
+<p>行图像遵从解析几何的描述，每个方程在平面上的图像为一条之间，找到符合方程的两个数组，确定出x-y平面上的两个点，连接两点可以画出该方程所代表的直线，两直线交点即为方程组的解，x=1,y=2.</p>
+<p><strong>Column picture列图像</strong><br>在列图像中，我们将系数矩阵写成列向量的形式，则求解的原方程变为寻找列向量的线性组合（linear combination）来构成向量<strong>b</strong>.</p>
+<script type="math/tex; mode=display">
+x
+\begin{bmatrix} 
+2\\
+-1
+\end{bmatrix} 
++y
+\begin{bmatrix}
+-1\\
+2
+\end{bmatrix}=
+\begin{bmatrix} 
+0\\
+3
+\end{bmatrix}</script><img src="/posts/35508c6a/2.png">
 <p>当任意取x，y,那么所有的线性组合是什么？那么两个向量的组合会布满整个坐标平面。</p>
 <hr>
 <h2 id="三元方程"><a href="#三元方程" class="headerlink" title="三元方程"></a>三元方程</h2><p>先写方程式</p>
@@ -589,7 +609,46 @@ x\begin{bmatrix}
 7
 \end{bmatrix}</script></li>
 </ul>
-<h1 id="矩阵消元"><a href="#矩阵消元" class="headerlink" title="矩阵消元"></a>矩阵消元</h1><hr>
+<h1 id="矩阵消元"><a href="#矩阵消元" class="headerlink" title="矩阵消元"></a>矩阵消元</h1><p> <strong>Elimination with matrices</strong></p>
+<h2 id="消元法Method-of-Elimination"><a href="#消元法Method-of-Elimination" class="headerlink" title="消元法Method of Elimination"></a>消元法Method of Elimination</h2><p>消元法是计算机软件求解线性方程组所用的最常见的方法，任何情况下，只要矩阵A可逆，均可以通过消元法求得Ax=b的解。</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x+2y+z=2\\
+3x+8y+z=12\\
+　　4y+z=2
+ \end{cases}</script><p>矩阵为</p>
+<script type="math/tex; mode=display">
+A=\begin{bmatrix}
+1&2&1\\
+3&8&1\\
+0&4&1
+\end{bmatrix}
+　　b=
+\begin{bmatrix}
+2\\
+12\\
+2
+\end{bmatrix}\tag{10}</script><p>高斯消元法，通过对方程组的某两个方程进行适当的乘和加减，使某一未知数系数变为0，从而消减未知数个数的目的。</p>
+<p>我们将矩阵(10)左上角的1称之为“主元”（the first pivot）<br>第一步要通过消元将第一列中除了主元之外的数字均变为0.<br>操作方法就是用之后的每一行减去第一行的适当倍数<br>该例子中第二行应该减去第一行的3倍，之后第三行也做类似的操作，但因为该例子第三行为0，所以不用进行操作。</p>
+<img src="/posts/35508c6a/5.png">
+<p>但是在MATLAB中，还是会继续进行第三行的运行即使第三行的第一列的系数为0,还是会继续运算一遍。而且MATLAB是先算左边矩阵，再算右边的。</p>
+<p>注意的是，主元不能为0，如果刚好0出现在主元的位置上，那么要和下面的其他行进行“行交换”，使得非零数字出现在主元位置上，如果找不到合适的行进行交换的话，那么消元终止，证明该矩阵为不可逆矩阵，切线性方程组没有唯一解。</p>
+<p>比如下面这个就没有解</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+*& * & *\\
+0 & * & *\\
+0 & 0 & 0
+\end{bmatrix}</script><h2 id="回代-Back-Substitution"><a href="#回代-Back-Substitution" class="headerlink" title="回代 Back-Substitution"></a>回代 Back-Substitution</h2><p>这时候需要把右侧向量b代入，插入矩阵A之后形成最后一列，在消元过程中带着b一起操作，这种叫做“增广矩阵”。</p>
+<p>而MATLAB，算完系数矩阵再处理b，把向量b当做新的一列加入进去。</p>
+<img src="/posts/35508c6a/6.png">
+<p>通过回代，我们可以得出新的方程组</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x+2y+z=2\\
+　2y-2z=6\\
+　　　5z=-10
+\end{cases}</script><hr>
 <p>post18</p>
 
       
@@ -847,7 +906,7 @@ x\begin{bmatrix}
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方程组的几何解释"><span class="nav-number">1.</span> <span class="nav-text">方程组的几何解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三元方程"><span class="nav-number">1.2.</span> <span class="nav-text">三元方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵与向量的乘法"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵与向量的乘法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵消元"><span class="nav-number">2.</span> <span class="nav-text">矩阵消元</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方程组的几何解释"><span class="nav-number">1.</span> <span class="nav-text">方程组的几何解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三元方程"><span class="nav-number">1.2.</span> <span class="nav-text">三元方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵与向量的乘法"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵与向量的乘法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵消元"><span class="nav-number">2.</span> <span class="nav-text">矩阵消元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#消元法Method-of-Elimination"><span class="nav-number">2.1.</span> <span class="nav-text">消元法Method of Elimination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回代-Back-Substitution"><span class="nav-number">2.2.</span> <span class="nav-text">回代 Back-Substitution</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -889,7 +948,7 @@ x\begin{bmatrix}
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">112.2k</span>
+    <span title="Site words total count">112.8k</span>
   
 </div>
 
