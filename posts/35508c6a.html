@@ -104,7 +104,9 @@
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/5.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/6.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/7.png">
-<meta property="og:updated_time" content="2018-11-08T03:47:30.413Z">
+<meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/8.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/9.png">
+<meta property="og:updated_time" content="2018-11-08T08:31:15.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
@@ -337,7 +339,7 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2018-11-08T11:47:30+08:00" content="2018-11-08">
+            <time itemprop="dateUpdated" datetime="2018-11-08T16:31:15+08:00" content="2018-11-08">
                 2018-11-08
             </time>
             </span>
@@ -394,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,519
+                  1,628
                 </span>
               
 
@@ -410,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -653,8 +655,16 @@ x+2y+z=2\\
 <p>上面的内容都是比较基础简单的内容。</p>
 <h2 id="消元矩阵-Elimination-Matrices"><a href="#消元矩阵-Elimination-Matrices" class="headerlink" title="消元矩阵 Elimination Matrices"></a>消元矩阵 Elimination Matrices</h2><p>核心内容就是对行或者列进行独立操作</p>
 <img src="/posts/35508c6a/7.png">
-<p>矩阵乘以一列得到一列，矩阵的每一列和列向量进行线性组合</p>
-<p>一行乘以矩阵得到一行，矩阵的每一行和行向量进行线性组合</p>
+<p>矩阵乘以一列得到一列，矩阵的每一列和列向量进行线性组合<br>大概就是右边行向量分别变成了矩阵的每一列的系数，乘以每一列后再每一列合并为一列。</p>
+<p>一行乘以矩阵得到一行，矩阵的每一行和行向量进行线性组合<br>大概就是左边行向量分别变成了矩阵的每一行的系数，乘以每一行后再每一行合并为一行。<br><img src="/posts/35508c6a/8.png"></p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&0&0\\
+-3&1&0\\
+0&0&1
+\end{bmatrix}
+\\E_{21}</script><p>我们把这种简单的叫初等矩阵E，然后 $E_{21}$就是指第二行第一列的位置的变换</p>
+<img src="/posts/35508c6a/9.png">
 <hr>
 <p>post18</p>
 
@@ -955,7 +965,7 @@ x+2y+z=2\\
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">112.9k</span>
+    <span title="Site words total count">113.1k</span>
   
 </div>
 
