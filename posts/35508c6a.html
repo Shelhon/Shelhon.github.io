@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/10.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/11.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/12.png">
-<meta property="og:updated_time" content="2018-11-19T06:52:47.727Z">
+<meta property="og:updated_time" content="2018-11-19T06:56:17.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
@@ -342,7 +342,7 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2018-11-19T14:52:47+08:00" content="2018-11-19">
+            <time itemprop="dateUpdated" datetime="2018-11-19T14:56:17+08:00" content="2018-11-19">
                 2018-11-19
             </time>
             </span>
@@ -399,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  4,587
                 </span>
               
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  16
                 </span>
               
             </div>
@@ -858,7 +858,365 @@ a_{i1}&a_{i2}&\dots&a_{im}
 　　\vdots\\
 　 　　+　\\
 　　a_{im}\begin{bmatrix}—&b_n&—\\\end{bmatrix}\\</script><h3 id="行乘以列"><a href="#行乘以列" class="headerlink" title="行乘以列"></a>行乘以列</h3><p>矩阵A的第K列是一个m×1的向量，而矩阵B第k行是一个1×p的向量，两向量相乘会得到一个矩阵$C_k$将所有的n个矩阵相加得到C。</p>
-<p><img src="/posts/35508c6a/12.png" title="}</p> <p>举例：<br>　　　　　　　　　　　col of A  × row of B<br>　　　　　　　　　　　　m×1 1×p</p> <script type=math/tex; mode=display> \begin{bmatrix} 2\\ 3\\ 4 \end{bmatrix} \begin{bmatrix} 1&6 \end{bmatrix}= \begin{bmatrix} 2&12\\ 3&18\\ 4&24 \end{bmatrix}</script><script type=math/tex; mode=display> \begin{bmatrix} 2&7\\ 3&8\\ 4&9 \end{bmatrix} \begin{bmatrix} 1&6\\ 0&0 \end{bmatrix}= \begin{bmatrix} 2\\ 3\\ 4 \end{bmatrix} \begin{bmatrix} 1&6 \end{bmatrix}+ \begin{bmatrix} 7\\ 8\\ 9 \end{bmatrix} \begin{bmatrix} 0&0 \end{bmatrix}= \begin{bmatrix} 2 &12\\ 3&18\\ 4&24 \end{bmatrix}+0</script><p>可以从矩阵乘法对加法的分配律推导出来。</p> <h3 id=分块乘法><a href=#分块乘法 class=headerlink title=分块乘法></a>分块乘法</h3><p>将矩阵分块，然后进行乘法</p> <p>假设矩阵A和矩阵B是方阵，且大小相等(其实不需要相等，只需要匹配)。分成四份。</p> <script type=math/tex; mode=display> \begin{bmatrix} A_1 & A_2\\ A_3 & A_4 \end{bmatrix} \begin{bmatrix} B_1 & B_2\\ B_3 & B_4 \end{bmatrix}= \begin{bmatrix} C_1 & C_2\\ C_3 & C_4 \end{bmatrix}</script><p>其中$C_1=A_1B_1+A_2B_3$,与标准算法中矩阵里的元素的计算一样。</p> <hr> <h2 id=逆矩阵Inverse><a href=#逆矩阵Inverse class=headerlink title=逆矩阵Inverse></a>逆矩阵Inverse</h2><p>例</p> <script type=math/tex; mode=display> \begin{bmatrix} 1&0&0\\ 3&1&1\\ 0&0&1 \end{bmatrix} \begin{bmatrix} 1&0&0\\ -3&1&1\\ 0&0&1 \end{bmatrix}= \begin{bmatrix} 1&0&0\\ 0&1&0\\ 0&0&1 \end{bmatrix} \\"></p>
+<img src="/posts/35508c6a/12.png">
+<p>举例：<br>　　　　　　　　　　　col of A 　 ×　  row of B<br>　　　　　　　　　　　　m×1 　　　1×p</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+2\\
+3\\
+4
+\end{bmatrix}
+\begin{bmatrix}
+1&6
+\end{bmatrix}=
+\begin{bmatrix}
+2&12\\
+3&18\\
+4&24
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\begin{bmatrix}
+2&7\\
+3&8\\
+4&9
+\end{bmatrix}
+\begin{bmatrix}
+1&6\\
+0&0
+\end{bmatrix}=
+\begin{bmatrix}
+2\\
+3\\
+4
+\end{bmatrix}
+\begin{bmatrix}
+1&6
+\end{bmatrix}+
+\begin{bmatrix}
+7\\
+8\\
+9
+\end{bmatrix}
+\begin{bmatrix}
+0&0
+\end{bmatrix}=
+\begin{bmatrix}
+2
+&12\\
+3&18\\
+4&24
+\end{bmatrix}+0</script><p>可以从矩阵乘法对加法的分配律推导出来。</p>
+<h3 id="分块乘法"><a href="#分块乘法" class="headerlink" title="分块乘法"></a>分块乘法</h3><p>将矩阵分块，然后进行乘法</p>
+<p>假设矩阵A和矩阵B是方阵，且大小相等(其实不需要相等，只需要匹配)。分成四份。</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+A_1 & A_2\\
+A_3 & A_4
+\end{bmatrix}
+\begin{bmatrix}
+B_1 & B_2\\
+B_3 & B_4
+\end{bmatrix}=
+\begin{bmatrix}
+C_1 & C_2\\
+C_3 & C_4
+\end{bmatrix}</script><p>其中$C_1=A_1B_1+A_2B_3$,与标准算法中矩阵里的元素的计算一样。</p>
+<hr>
+<h2 id="逆矩阵Inverse"><a href="#逆矩阵Inverse" class="headerlink" title="逆矩阵Inverse"></a>逆矩阵Inverse</h2><p>例</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&0&0\\
+3&1&1\\
+0&0&1
+\end{bmatrix}
+\begin{bmatrix}
+1&0&0\\
+-3&1&1\\
+0&0&1
+\end{bmatrix}=
+\begin{bmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{bmatrix}
+\\
+E_{21^{-1}}　　×　　E_{21}　 　=　　I</script><script type="math/tex; mode=display">
+A^{-1}A=I=AA^{-1}</script><p>不是所有的矩阵都有逆，可能有也有可能没有。</p>
+<p>上面的例子的逆矩阵在左边，所以是左逆，在右边也可能存在逆矩阵。<br>在<strong>方阵</strong>中，左逆矩阵是<strong>等</strong>于右逆矩阵的。如果是<strong>非方阵</strong>，左逆是<strong>不等于</strong>右逆的。</p>
+<p>一般我们叫可逆矩阵(invertible)或者非奇异矩阵(nonsingular)。<br>反之，如果A为奇异(singular)，那么就没有逆矩阵。它的行列式为0。或者另一个说法是，A为奇异矩阵，则方程Ax=0存在非零解x，例如：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&3\\
+2&6
+\end{bmatrix}
+\begin{bmatrix}-3\\
+1
+\end{bmatrix}=
+\begin{bmatrix}
+0\\
+0
+\end{bmatrix}</script><p>在这个不可逆矩阵的例子中，左边的两个列向量是在同一方向上。列向量对生成的线性组合没有贡献。等价的说法：不可逆矩阵的列向量可以通过线性组合得到0。<br>换言之，如果矩阵A存在逆矩阵，则方程Ax=0只有零解，证明：反设其存在非零解x向量，则有$x=(A^{-1}A)x=A^{-1}(Ax)=A^{-1}0=0$,有矛盾。</p>
+<p>对于可逆矩阵，求逆是一个重要的问题。</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&3\\
+2&7\\
+\end{bmatrix}
+\begin{bmatrix}
+a&c\\
+b&d\\
+\end{bmatrix}=
+\begin{bmatrix}
+1&0\\
+0&1\\
+\end{bmatrix}\\
+A　 　A^{-1} 　　　I</script><p>从“列操作”角度来看，求逆矩阵过程和求Ax=b相同，只是这里x为矩阵$A^{-1}$的第j列，而b为单位阵I的第j列。</p>
+<h3 id="高斯-若尔当消元法-Gauss-Jordan-Elimination"><a href="#高斯-若尔当消元法-Gauss-Jordan-Elimination" class="headerlink" title="高斯-若尔当消元法 Gauss-Jordan Elimination"></a>高斯-若尔当消元法 Gauss-Jordan Elimination</h3><p>对于上面的可逆矩阵，求逆相当于求两组方程</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&3\\
+2&7
+\end{bmatrix}
+\begin{bmatrix}
+a\\
+b
+\end{bmatrix}=
+\begin{bmatrix}
+1\\
+0
+\end{bmatrix}和
+\begin{bmatrix}
+1&3\\
+2&7
+\end{bmatrix}
+\begin{bmatrix}
+c\\
+d
+\end{bmatrix}=
+\begin{bmatrix}
+0\\
+1
+\end{bmatrix}</script><p>Gauss-Jordan消元法可以同时处理两个方程：</p>
+<script type="math/tex; mode=display">
+\left[ 
+\begin{array}{cc|cc} 
+1 & 3 & 1&0 \\  
+2 &7 & 0 &1  
+\end{array} 
+\right] →
+\left[ 
+\begin{array}{cc|cc} 
+1 & 3 & 1&0 \\  
+0 &1 & -2 &1  
+\end{array} 
+\right] →
+\left[ 
+\begin{array}{cc|cc} 
+1 & 0 & 7 &-3 \\  
+0 & 1 & -2 & 1  
+\end{array} 
+\right]\\
+　　A　　I　　　　　　　　　　　　　　　I　　　A^{-1}</script><p>在用高斯消元法得到上三角矩阵之后，按照若尔当的做法继续消元，使原矩阵变成单位阵，这样右侧的矩阵就变成了逆矩阵。</p>
+<script type="math/tex; mode=display">
+E\begin{bmatrix}A|I
+\end{bmatrix}=
+\begin{bmatrix}EA|EI
+\end{bmatrix}=
+\begin{bmatrix}I|A^{-1}
+\end{bmatrix}</script><h1 id="A的LU分解"><a href="#A的LU分解" class="headerlink" title="A的LU分解"></a>A的LU分解</h1><h2 id="矩阵乘积的逆矩阵Inverse-of-product"><a href="#矩阵乘积的逆矩阵Inverse-of-product" class="headerlink" title="矩阵乘积的逆矩阵Inverse of product"></a>矩阵乘积的逆矩阵Inverse of product</h2><script type="math/tex; mode=display">
+(AB)^{-1}=B^{-1}A^{-1}\\
+ABB^{-1}A^{-1}=A(BB^{-1})A^{-1}=I\\
+比较等式两端可得\\
+(AB)^{-1}=B^{-1}A^{-1}</script><h2 id="矩阵乘积的转置Transpose-of-a-product"><a href="#矩阵乘积的转置Transpose-of-a-product" class="headerlink" title="矩阵乘积的转置Transpose of a product"></a>矩阵乘积的转置Transpose of a product</h2><p>   矩阵乘积的转置是两个矩阵调换顺序后再分别转置</p>
+<script type="math/tex; mode=display">
+AA^{-1}=I\\
+转置后\\
+(A^{-1})^TA^T=I</script><p>通过上面的例子可以观察得到</p>
+<script type="math/tex; mode=display">
+∵(A^{-1})^TA^T=I
+\\∴A^T的逆矩阵是(A^{-1})^T\\
+所以转置的过程是可以跟矩阵的逆过程交换的。\\
+或者说对于逆和转置这两种运算，在单个矩阵里是可以颠倒顺序的\\                               
+变成为(A^T)^{-1}</script><p>转置的基础知识介绍：</p>
+<p>矩阵A的转置矩阵记为$A^T$,对矩阵进行转置就是将A矩阵的行变为$A^T$的列，A的列变成$A^T$的行，看起来就像是沿着对角线进行翻转。</p>
+<script type="math/tex; mode=display">
+A=\begin{bmatrix}
+2&1&4\\
+0&0&3
+\end{bmatrix},则
+A^T=\begin{bmatrix}
+2&0\\1&0\\4&3
+\end{bmatrix}</script><p>$其数学表达式为(A^T)_{ij}=A_{ji}，即A^T的第i行第j列的元素为原矩阵A中第j行i列的元素$</p>
+<h2 id="矩阵的LU分解"><a href="#矩阵的LU分解" class="headerlink" title="矩阵的LU分解"></a>矩阵的LU分解</h2><p>LU分解是理解矩阵性质A的重要方法，可以将矩阵的分解类比为多项式的因式分解，分解后的结果可以让我们更容易看清“解”的状态。</p>
+<p>在没有行变换的情况下，矩阵A通过左乘一系列消元矩阵$E_{ij}$可以转化为U，在二阶矩阵中，进行一次消元操作就可以达到这一效果。</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&0\\
+-4&1
+\end{bmatrix}
+\begin{bmatrix}
+2&1\\
+8&7
+\end{bmatrix}=
+\begin{bmatrix}
+2&1\\
+0&3
+\end{bmatrix}\\
+　E_{21} 　　　A　　　　 U</script><p>在等式两侧左乘，得到$E_{21}^{-1}E_{21}A=E_{21}^{-1}U。即A=E_{21}^{-1}U$。就得到了矩阵A的LU分解的结果，$E_{21}^{-1}是E_{21}的逆向操作\\<br>即左乘E_{21}中使得矩阵A第二行[8,7]减去第一行的4倍得到新的第二行[0,3]\\<br>那么再左乘E_{21}^{-1}可以使得新的第二行[0,3]加上第一行的4倍又变回原来第二行的数值[8,7]$</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+2&1\\
+8&7
+\end{bmatrix}=
+\begin{bmatrix}
+1&0\\
+4&1
+\end{bmatrix}
+\begin{bmatrix}
+2&1\\
+0&3
+\end{bmatrix}\\
+　A 　　　　L　　　 U</script><p>其。U为上三角阵，主元依次排列于它的对角线上。$Ｅ_{21}^{-1}$即L为下三角阵。有时候我们也能通过分解得到对角阵D（diagonal  matrix），例如</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+2&1\\
+8&7
+\end{bmatrix}=
+\begin{bmatrix}
+1&0\\
+4&1
+\end{bmatrix}
+\begin{bmatrix}
+2&0\\
+0&3
+\end{bmatrix}
+\begin{bmatrix}
+1&1/2\\
+0&1
+\end{bmatrix}\\
+　A　　　　L　　　D　　　U’</script><p>对于三阶矩阵，在没有换行的情况下：</p>
+<script type="math/tex; mode=display">
+E_{32}(E_{31}(E_{21}A))=U</script><p>左乘逆矩阵可得:</p>
+<script type="math/tex; mode=display">
+A=E_{21}^{-1}E_{31}^{-1}E_{32}^{-1}U=LU</script><p>举例，设定一组消元矩阵，其中$E_{31}$为单位阵I，其他两个消元矩阵如下：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&0&0\\
+0&1&0\\
+0&-5&1
+\end{bmatrix}
+\begin{bmatrix}
+1&0&0\\
+-2&1&0\\
+0&0&1
+\end{bmatrix}=
+\begin{bmatrix}
+1&0&0\\
+-2&1&0\\
+10&-5&1
+\end{bmatrix}\\
+　　E_{32}　　　　　E_{21}　　　　　　E</script><p>矩阵的乘法运算就是等式左边的矩阵的第i行乘以右边矩阵等于等式 右边矩阵的第i行。</p>
+<p>现在反过来用逆矩阵来运算：$L=E^{-1}=E_{21}^{-1}E_{32}^{-1}$</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&0&0\\
+2&1&0\\
+0&0&1
+\end{bmatrix}
+\begin{bmatrix}
+1&0&0\\
+0 &1&0\\
+0&5&1
+\end{bmatrix}=
+\begin{bmatrix}
+1&0&0\\
+2&1&0\\
+0&5&1
+\end{bmatrix}\\
+　E_{21}^{-1}　　　　E_{32}^{-1}　　　　　L</script><p>如果在没有行交换的操作，则消元矩阵的因子可以直接写入矩阵L，没有多余的交叉项出现是LU分解优于EA＝U这种形式的原因之一。</p>
+<h2 id="消元法所需的运算量"><a href="#消元法所需的运算量" class="headerlink" title="消元法所需的运算量"></a>消元法所需的运算量</h2><p>在一些应用中需要处理超大型矩阵，即使用计算机来处理这个问题，也需要评估所需的计算量。<br>如果把“先乘后减”大致记为一个运算，那么对于一个n×n的矩阵，对于一行进行消元要进行n次运算，由于有n行，所以进行了$n^2$次运算，结果得到了第一列除第一主元外都消成0的矩阵。随后开始对除第一行第一列之外的剩余部分进行消元，这相当于一个(n-1)×(n-1)的矩阵，利用积分公式可以估算其数值</p>
+<script type="math/tex; mode=display">
+1^2+2^2 +\dots+n^2=\sum_{i=1}^ni^2\approx\int^n_0x^2dx=\frac{1}{3}n^3</script><p>等号右侧向量b的行变换大致需要$n^2$次运算</p>
+<h2 id="行转换Row-exchanges"><a href="#行转换Row-exchanges" class="headerlink" title="行转换Row exchanges"></a>行转换Row exchanges</h2><p>当主元的位置出现了0，那么就需要进行“行交换”。可以通过左乘一个置换矩阵来实现该操作。例如</p>
+<script type="math/tex; mode=display">
+P_{21}=
+\begin{bmatrix}
+0&1&0\\
+1&0&0\\
+0&0&1
+\end{bmatrix}</script><p>可以实现3×3矩阵的第一行与第二行的交换。所有的3×3的置换矩阵包括：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{bmatrix}
+\begin{bmatrix}
+1&0&0\\
+0&0&1\\
+0&1&0
+\end{bmatrix}
+\begin{bmatrix}
+0&1&0\\
+1&0&0\\
+0&0&1
+\end{bmatrix}\\
+\begin{bmatrix}
+0&1&0\\
+0&0&1\\
+1&0&0
+\end{bmatrix}
+\begin{bmatrix}
+0&0&1\\
+1&0&0\\
+0&1&1
+\end{bmatrix}
+\begin{bmatrix}
+0&0&1\\
+0&1&0\\
+1&0&0
+\end{bmatrix}</script><p>对于n×n矩阵存在着n!个置换矩阵。置换矩阵每一行或者每一列只有一个元素是1，其他都是0，从第一行选一个位置设定为1有n个选择，第二行则只剩下n-1个选择，以此类推，最后有n!种可能。</p>
+<p>对于某阶的置换矩阵集合而言，置换矩阵的两两乘积仍在这个集合中，置换矩阵的逆矩阵也在此集合中。置换矩阵的逆矩阵即为它的转置$P^{-1}=P^T$。</p>
+<h1 id="转置、置换和空间"><a href="#转置、置换和空间" class="headerlink" title="转置、置换和空间"></a>转置、置换和空间</h1><p>现在才算进入了线性代数的大门，本节引入向量空间（vector spaces）和子空间（subspaces）的概念。</p>
+<h2 id="置换-Permutations"><a href="#置换-Permutations" class="headerlink" title="置换 Permutations"></a>置换 Permutations</h2><p>当应用消元法求解方程组的时候，我们需要通过行交换将0从主元位置移走，左乘一个置换阵可以实现行交换的操作。</p>
+<p>MATLAB在运行时，有时候为了满足数值计算的要求，会对接近于0的非零主元做行交换。</p>
+<p>因此我们的LU分解由A=LU变为PA=LU，其中的P就是对A的行向量进行重新排序的置换矩阵。</p>
+<p>置换矩阵P是通过对单位阵进行“行交换”得到的，对于n×n矩阵存在着n!个置换矩阵。置换矩阵具有特殊性质 </p>
+<script type="math/tex; mode=display">
+P^{-1}=P^T\\即P^TP=I</script><h2 id="转置-Transposes"><a href="#转置-Transposes" class="headerlink" title="转置 Transposes"></a>转置 Transposes</h2><p>矩阵A的转置记为$A^T$，对矩阵进行转置就是将A矩阵的行变为$A^T$的列，则完成后A的列也就称为了$A^T$的行，看起来矩阵如同沿着对角线进行了翻转。</p>
+<p>表达式为</p>
+<script type="math/tex; mode=display">
+（A^T）_{ij}=A_{ji}</script><p>就是$A^T$的第i行j列的元素为原矩阵A中第j行i列的元素。</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&3\\
+2&3\\
+4&1
+\end{bmatrix}^T=
+\begin{bmatrix}
+1&2&4\\
+3&3&1
+\end{bmatrix}</script><p>若A是对称矩阵则有$A^T=A$。</p>
+<p>矩阵乘积的转置$(AB)^T=B^TA^T$</p>
+<p>给定一个矩阵R，R可以不是方阵，则乘积$R^TR$一定是对称阵。</p>
+<script type="math/tex; mode=display">
+(R^TR)^T=R^T(R^T)^T=R^TR</script><p>举例</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&3\\
+2&3\\
+4&1
+\end{bmatrix}
+\begin{bmatrix}
+1&2&4\\
+3&3&1
+\end{bmatrix}=
+\begin{bmatrix}
+10&11&7\\
+11&13&11\\
+7&11&17
+\end{bmatrix}</script><hr>
+<p>post18</p>
+
       
     </div>
     
@@ -1114,7 +1472,7 @@ a_{i1}&a_{i2}&\dots&a_{im}
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方程组的几何解释"><span class="nav-number">1.</span> <span class="nav-text">方程组的几何解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三元方程"><span class="nav-number">1.2.</span> <span class="nav-text">三元方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵与向量的乘法"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵与向量的乘法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵消元"><span class="nav-number">2.</span> <span class="nav-text">矩阵消元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#消元法Method-of-Elimination"><span class="nav-number">2.1.</span> <span class="nav-text">消元法Method of Elimination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回代-Back-Substitution"><span class="nav-number">2.2.</span> <span class="nav-text">回代 Back-Substitution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消元矩阵-Elimination-Matrices"><span class="nav-number">2.3.</span> <span class="nav-text">消元矩阵 Elimination Matrices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#置换矩阵Permutation"><span class="nav-number">2.4.</span> <span class="nav-text">置换矩阵Permutation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵乘法和逆矩阵"><span class="nav-number">3.</span> <span class="nav-text">矩阵乘法和逆矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘法Matrix-multiplication"><span class="nav-number">3.1.</span> <span class="nav-text">矩阵乘法Matrix multiplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准方法（行乘以列）"><span class="nav-number">3.1.1.</span> <span class="nav-text">标准方法（行乘以列）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列操作"><span class="nav-number">3.1.2.</span> <span class="nav-text">列操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行操作"><span class="nav-number">3.1.3.</span> <span class="nav-text">行操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行乘以列"><span class="nav-number">3.1.4.</span> <span class="nav-text">行乘以列</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方程组的几何解释"><span class="nav-number">1.</span> <span class="nav-text">方程组的几何解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三元方程"><span class="nav-number">1.2.</span> <span class="nav-text">三元方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵与向量的乘法"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵与向量的乘法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵消元"><span class="nav-number">2.</span> <span class="nav-text">矩阵消元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#消元法Method-of-Elimination"><span class="nav-number">2.1.</span> <span class="nav-text">消元法Method of Elimination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回代-Back-Substitution"><span class="nav-number">2.2.</span> <span class="nav-text">回代 Back-Substitution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消元矩阵-Elimination-Matrices"><span class="nav-number">2.3.</span> <span class="nav-text">消元矩阵 Elimination Matrices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#置换矩阵Permutation"><span class="nav-number">2.4.</span> <span class="nav-text">置换矩阵Permutation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵乘法和逆矩阵"><span class="nav-number">3.</span> <span class="nav-text">矩阵乘法和逆矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘法Matrix-multiplication"><span class="nav-number">3.1.</span> <span class="nav-text">矩阵乘法Matrix multiplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准方法（行乘以列）"><span class="nav-number">3.1.1.</span> <span class="nav-text">标准方法（行乘以列）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列操作"><span class="nav-number">3.1.2.</span> <span class="nav-text">列操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行操作"><span class="nav-number">3.1.3.</span> <span class="nav-text">行操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行乘以列"><span class="nav-number">3.1.4.</span> <span class="nav-text">行乘以列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分块乘法"><span class="nav-number">3.1.5.</span> <span class="nav-text">分块乘法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆矩阵Inverse"><span class="nav-number">3.2.</span> <span class="nav-text">逆矩阵Inverse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯-若尔当消元法-Gauss-Jordan-Elimination"><span class="nav-number">3.2.1.</span> <span class="nav-text">高斯-若尔当消元法 Gauss-Jordan Elimination</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A的LU分解"><span class="nav-number">4.</span> <span class="nav-text">A的LU分解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘积的逆矩阵Inverse-of-product"><span class="nav-number">4.1.</span> <span class="nav-text">矩阵乘积的逆矩阵Inverse of product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘积的转置Transpose-of-a-product"><span class="nav-number">4.2.</span> <span class="nav-text">矩阵乘积的转置Transpose of a product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的LU分解"><span class="nav-number">4.3.</span> <span class="nav-text">矩阵的LU分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消元法所需的运算量"><span class="nav-number">4.4.</span> <span class="nav-text">消元法所需的运算量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行转换Row-exchanges"><span class="nav-number">4.5.</span> <span class="nav-text">行转换Row exchanges</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转置、置换和空间"><span class="nav-number">5.</span> <span class="nav-text">转置、置换和空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#置换-Permutations"><span class="nav-number">5.1.</span> <span class="nav-text">置换 Permutations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转置-Transposes"><span class="nav-number">5.2.</span> <span class="nav-text">转置 Transposes</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1156,7 +1514,7 @@ a_{i1}&a_{i2}&\dots&a_{im}
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">111.4k</span>
+    <span title="Site words total count">116.0k</span>
   
 </div>
 
