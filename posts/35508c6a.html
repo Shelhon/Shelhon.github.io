@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/10.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/11.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/12.png">
-<meta property="og:updated_time" content="2018-11-19T09:19:27.445Z">
+<meta property="og:updated_time" content="2019-01-10T09:39:35.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
@@ -342,8 +342,8 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2018-11-19T17:19:27+08:00" content="2018-11-19">
-                2018-11-19
+            <time itemprop="dateUpdated" datetime="2019-01-10T17:39:35+08:00" content="2019-01-10">
+                2019-01-10
             </time>
             </span>
         
@@ -399,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,306
+                  5,298
                 </span>
               
 
@@ -587,7 +587,7 @@ x\begin{bmatrix}
 1\begin{bmatrix} 
 2  \\ 
 1 
-\end{bmatrix}
+\end{bmatrix}+
 2\begin{bmatrix} 
 5 \\ 
 3
@@ -785,9 +785,9 @@ y_1=a_{11}x_1+....+a_{1n}x_n\\
 y_m=a_{m1}x_1+....+a_{mn}x_n
 \end{cases}　　　　
 \begin{cases}
-w_1=d_{11}y_1+....+d_{1n}y_n\\
+w_1=d_{11}y_1+....+d_{1m}y_m\\
 　　　　 .....\\
-w_k=d_{k1}y_1+....+d_{kn}y_n
+w_k=d_{k1}y_1+....+d_{km}y_m
 \end{cases}\\
 y=Ax　A为m×n矩阵 　　　　　　w=Dy　D为k×m矩阵</script><p>将左侧$y_1$ 至 $y_m$的表达式代入右侧的方程，则有</p>
 <script type="math/tex; mode=display">
@@ -813,7 +813,7 @@ w=Dy=DAx=Cx</script><p>C=DA为k×n矩阵，从上式得到$C_{ij}$的公式<br>�
 </ul>
 </li>
 </ol>
-<h3 id="列操作"><a href="#列操作" class="headerlink" title="列操作"></a>列操作</h3><p>列操作是指矩阵C的第j列是通过矩阵A乘以矩阵A乘以矩阵A乘以矩阵B第j列的列向量得到的，这表明矩阵C的列向量是矩阵A列向量的线性组合，组合的“权”就是矩阵B第j列的各个分量。</p>
+<h3 id="列操作"><a href="#列操作" class="headerlink" title="列操作"></a>列操作</h3><p>列操作是指矩阵C的第j列是通过矩阵A乘以矩阵B第j列的列向量得到的，这表明矩阵C的列向量是矩阵A列向量的线性组合，组合的“权”就是矩阵B第j列的各个分量。</p>
 <script type="math/tex; mode=display">
 AB=A
 \begin{bmatrix}
@@ -846,7 +846,7 @@ a_iB=\begin{bmatrix}
 a_{i1}&a_{i2}&\dots&a_{im}
 \end{bmatrix}
 \begin{bmatrix}
-—&b_1&—\    \
+—&b_1&—\\
 —&b_2&—\\
 &\vdots &\\
 &\vdots &\\
@@ -1531,7 +1531,7 @@ P^{-1}=P^T\\即P^TP=I</script><h2 id="转置-Transposes"><a href="#转置-Transp
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
