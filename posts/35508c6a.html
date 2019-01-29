@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/10.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/11.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/12.png">
-<meta property="og:updated_time" content="2019-01-29T11:39:11.526Z">
+<meta property="og:updated_time" content="2019-01-29T13:19:31.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
@@ -342,7 +342,7 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2019-01-29T19:39:11+08:00" content="2019-01-29">
+            <time itemprop="dateUpdated" datetime="2019-01-29T21:19:31+08:00" content="2019-01-29">
                 2019-01-29
             </time>
             </span>
@@ -1262,7 +1262,7 @@ P^{-1}=P^T\\即P^TP=I</script><h2 id="转置-Transposes"><a href="#转置-Transp
 \end{bmatrix}</script><p>并不是所有b都能保证Ax=b有解，因为有四个线性方程而只有3个未知数，矩阵A列向量的线性组合无法充满$R^4$，因此如果b不能被表示为A列向量的线性组合时，方程是无解的，只有当b在矩阵  A列空间C（A）里时，x才有解。</p>
 <p>对于给定的矩阵A，由于列向量不是线性无关的，第三个列向量为前两个列向量之和，所以尽管有3个列向量，但是只有2个对向量空间有贡献。矩阵A的列空间为$R^4$内的一个二维子空间。</p>
 <h2 id="零空间（或化零空间）Nullspace"><a href="#零空间（或化零空间）Nullspace" class="headerlink" title="零空间（或化零空间）Nullspace"></a>零空间（或化零空间）Nullspace</h2><p>矩阵 A的零空间N（A）是指满足Ax=0的所有解的集合。对于给定这个矩阵A，其列向量含有4个分量，因此列空间是空间$R^4$的子空间，x为含有3个分量的向量，故矩阵  A的零空间是$R^3$的子空间。对于m×n的矩阵，列空间为$R^m$的子空间，零空间为$R^n$的子空间。</p>
-<p>本例中矩阵A的零空间N（A）为包含$\begin{bmatrix} 1 \ 1 \\－1 \end{bmatrix}$的任何倍数的集合。因为很容易看到第一列向量（1）和第二列向量（1）相加减去第三列向量（-1）为零。此零空间为$R^3$中的一条直线。</p>
+<p>本例中矩阵A的零空间N（A）为包含$\begin{bmatrix} 1\\1\\－1 \end{bmatrix}$的任何倍数的集合。因为很容易看到第一列向量（1）和第二列向量（1）相加减去第三列向量（-1）为零。此零空间为$R^3$中的一条直线。</p>
 <p>为了验证Ax=0的解集是一个向量空间，我们可以检验它是否对线性运算封闭，若v和w为解集中的元素，则有：</p>
 <script type="math/tex; mode=display">
 A(v+w)=Av+Aw=0+0=0,\\
@@ -1285,7 +1285,7 @@ x_3
 2 \\
 3\\
 4
-\end{bmatrix}</script><p>则其解集不能构成一个子空间，零向量并不在这个集合内。解集是空间$R^3$内过$\begin{bmatrix}1\\0\\0\end{bmatrix}$和$\begin{bmatrix}0\\－1\ 1\end{bmatrix}$的一个平面，但是并不穿过原点$\begin{bmatrix}0\\0\\0\end{bmatrix}$.</p>
+\end{bmatrix}</script><p>则其解集不能构成一个子空间，零向量并不在这个集合内。解集是空间$R^3$内过$\begin{bmatrix}1\\0\\0\end{bmatrix}$和$\begin{bmatrix}0\\－1\\1\end{bmatrix}$的一个平面，但是并不穿过原点$\begin{bmatrix}0\\0\\0\end{bmatrix}$.</p>
 <p>这一讲主要关于矩阵的两种子空间，同时给出两种构造子空间的方法，对于列空间，她是又列向量线性 组合张成的空间；而零件空间是从方程组触发，通过让x满足特定条件而得到的子空间。</p>
 <p>post18</p>
 
