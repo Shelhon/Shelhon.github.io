@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/10.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/11.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/12.png">
-<meta property="og:updated_time" content="2019-01-17T06:43:01.321Z">
+<meta property="og:updated_time" content="2019-01-29T11:21:22.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记">
 <meta name="twitter:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
@@ -342,8 +342,8 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2019-01-17T14:43:01+08:00" content="2019-01-17">
-                2019-01-17
+            <time itemprop="dateUpdated" datetime="2019-01-29T19:21:22+08:00" content="2019-01-29">
+                2019-01-29
             </time>
             </span>
         
@@ -399,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,306
+                  6,257
                 </span>
               
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  19
+                  23
                 </span>
               
             </div>
@@ -1246,7 +1246,48 @@ P^{-1}=P^T\\即P^TP=I</script><h2 id="转置-Transposes"><a href="#转置-Transp
 <p>如果$A=\begin{bmatrix}1&amp;3\\2&amp;3\\4&amp;1\end{bmatrix}$,则A的列空间是$R^3$中包含向量$\begin{bmatrix}1\\2\\4\end{bmatrix}$和$\begin{bmatrix}3\\3\\1\end{bmatrix}$并穿过远点的平面，空间内包含两向量的所有线性组合。</p>
 <p>在之后的课程里在列空间和子空间的基础上理解Ax=b.</p>
 <hr>
-<h2 id="列空间和零空间"><a href="#列空间和零空间" class="headerlink" title="列空间和零空间"></a>列空间和零空间</h2><p>post18</p>
+<h1 id="列空间和零空间"><a href="#列空间和零空间" class="headerlink" title="列空间和零空间"></a>列空间和零空间</h1><p>回顾：所谓“向量空间”是对于线性运算封闭的向量集合。对于空间中的任意向量v和w，其和v+w和数乘cv必属于该空间，也就是说，线性组合cv+dw必属于该空间。</p>
+<p>$R^1R^2，R^3…….$都是重要的向量空间，$R^n$代表的空间包含了所具有的n个分量的向量，其中字母R表名分量均为实数（real）。</p>
+<p>子空间为包含于向量空间内的一个向量空间。它是原向量空间的一个子集，而且本身也满足向量空间的要求。但是“子空间”和“子集”的概念有区别，所有的元素都在原空间之内就可称为子集。但是要满足对线性运算封闭的子集才能成为子空间。</p>
+<p>比如：<br>过原点的平面P是$R^3$的一个子空间<br>通过原点的直线L也是$R^3$的子空间<br>P并L（union）通常并不是$R^3$的子空间<br>P交L（intersection）是$R^3$子空间的特例——0空间，只有零向量。</p>
+<p>任意子空间S和T的交集都是子空间，可以通过S和T本身对线性组合封闭来证明。</p>
+<h2 id="列空间-Column-space"><a href="#列空间-Column-space" class="headerlink" title="列空间 Column space"></a>列空间 Column space</h2><p>矩阵A的列空间C（A）是其列向量的所有线性组合所构成的空间。<br>求解Ax=b的 问题，对于给定的矩阵  A，对于任意的b都能得到解么？</p>
+<script type="math/tex; mode=display">
+如果A=
+\begin{bmatrix}
+1&1&2\\
+2&1&3\\
+3&1&4\\
+4&1&5
+\end{bmatrix}</script><p>并不是所有b都能保证Ax=b有解，因为有四个线性方程而只有3个未知数，矩阵A列向量的线性组合无法充满$R^4$，因此如果b不能被表示为A列向量的线性组合时，方程是无解的，只有当b在矩阵  A列空间C（A）里时，x才有解。</p>
+<p>对于给定的矩阵A，由于列向量不是线性无关的，第三个列向量为前两个列向量之和，所以尽管有3个列向量，但是只有2个对向量空间有贡献。矩阵A的列空间为$R^4$内的一个二维子空间。</p>
+<h2 id="零空间（或化零空间）Nullspace"><a href="#零空间（或化零空间）Nullspace" class="headerlink" title="零空间（或化零空间）Nullspace"></a>零空间（或化零空间）Nullspace</h2><p>矩阵 A的零空间N（A）是指满足Ax=0的所有解的集合。对于给定这个矩阵A，其列向量含有4个分量，因此列空间是空间$R^4$的子空间，x为含有3个分量的向量，故矩阵  A的零空间是$R^3$的子空间。对于m×n的矩阵，列空间为$R^m$的子空间，零空间为$R^n$的子空间。</p>
+<p>本例中矩阵A的零空间N（A）为包含$\begin{bmatrix}1\\1\-1\end{bmatrix}$的任何倍数的集合。因为很容易看到第一列向量（1）和第二列向量（1）相加减去第三列向量（-1）为零。此零空间为$R^3$中的一条直线。</p>
+<p>为了验证Ax=0的解集是一个向量空间，我们可以检验它是否对线性运算封闭，若v和w为解集中的元素，则有：</p>
+<script type="math/tex; mode=display">
+A(v+w)=Av+Aw=0+0=0,\\
+A(cv)=cAv=0</script><p>因此得证N（A）确实是$R^n$空间的一个子空间。</p>
+<h2 id="b值的影响-Other-values-of-b"><a href="#b值的影响-Other-values-of-b" class="headerlink" title="b值的影响 Other values of b"></a>b值的影响 Other values of b</h2><p>若方程变为</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1 & 1 & 2 \\
+2 & 1 & 3 \\
+3 & 1 & 4 \\
+4 & 1 & 5 
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{bmatrix}=
+\begin{bmatrix}
+1 \\
+2 \\
+3\\
+4
+\end{bmatrix}</script><p>则其解集不能构成一个子空间，零向量并不在这个集合内。解集是空间$R^3$内过$\begin{bmatrix}1\\0\\0\end{bmatrix}$和$\begin{bmatrix}0\-1\\1\end{bmatrix}$的一个平面，但是并不穿过原点$\begin{bmatrix}0\\0\\0\end{bmatrix}$.</p>
+<p>这一讲主要关于矩阵的两种子空间，同时给出两种构造子空间的方法，对于列空间，她是又列向量线性 组合张成的空间；而零件空间是从方程组触发，通过让x满足特定条件而得到的子空间。</p>
+<p>post18</p>
 
       
     </div>
@@ -1503,7 +1544,7 @@ P^{-1}=P^T\\即P^TP=I</script><h2 id="转置-Transposes"><a href="#转置-Transp
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方程组的几何解释"><span class="nav-number">1.</span> <span class="nav-text">方程组的几何解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三元方程"><span class="nav-number">1.2.</span> <span class="nav-text">三元方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵与向量的乘法"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵与向量的乘法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵消元"><span class="nav-number">2.</span> <span class="nav-text">矩阵消元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#消元法Method-of-Elimination"><span class="nav-number">2.1.</span> <span class="nav-text">消元法Method of Elimination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回代-Back-Substitution"><span class="nav-number">2.2.</span> <span class="nav-text">回代 Back-Substitution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消元矩阵-Elimination-Matrices"><span class="nav-number">2.3.</span> <span class="nav-text">消元矩阵 Elimination Matrices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#置换矩阵Permutation"><span class="nav-number">2.4.</span> <span class="nav-text">置换矩阵Permutation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵乘法和逆矩阵"><span class="nav-number">3.</span> <span class="nav-text">矩阵乘法和逆矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘法Matrix-multiplication"><span class="nav-number">3.1.</span> <span class="nav-text">矩阵乘法Matrix multiplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准方法（行乘以列）"><span class="nav-number">3.1.1.</span> <span class="nav-text">标准方法（行乘以列）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列操作"><span class="nav-number">3.1.2.</span> <span class="nav-text">列操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行操作"><span class="nav-number">3.1.3.</span> <span class="nav-text">行操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行乘以列"><span class="nav-number">3.1.4.</span> <span class="nav-text">行乘以列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分块乘法"><span class="nav-number">3.1.5.</span> <span class="nav-text">分块乘法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆矩阵Inverse"><span class="nav-number">3.2.</span> <span class="nav-text">逆矩阵Inverse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯-若尔当消元法-Gauss-Jordan-Elimination"><span class="nav-number">3.2.1.</span> <span class="nav-text">高斯-若尔当消元法 Gauss-Jordan Elimination</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A的LU分解"><span class="nav-number">4.</span> <span class="nav-text">A的LU分解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘积的逆矩阵Inverse-of-product"><span class="nav-number">4.1.</span> <span class="nav-text">矩阵乘积的逆矩阵Inverse of product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘积的转置Transpose-of-a-product"><span class="nav-number">4.2.</span> <span class="nav-text">矩阵乘积的转置Transpose of a product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的LU分解"><span class="nav-number">4.3.</span> <span class="nav-text">矩阵的LU分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消元法所需的运算量"><span class="nav-number">4.4.</span> <span class="nav-text">消元法所需的运算量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行转换Row-exchanges"><span class="nav-number">4.5.</span> <span class="nav-text">行转换Row exchanges</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转置、置换和空间"><span class="nav-number">5.</span> <span class="nav-text">转置、置换和空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#置换-Permutations"><span class="nav-number">5.1.</span> <span class="nav-text">置换 Permutations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转置-Transposes"><span class="nav-number">5.2.</span> <span class="nav-text">转置 Transposes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量空间"><span class="nav-number">5.3.</span> <span class="nav-text">向量空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子空间"><span class="nav-number">5.4.</span> <span class="nav-text">子空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列空间Colunmn-spaces"><span class="nav-number">5.5.</span> <span class="nav-text">列空间Colunmn spaces</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列空间和零空间"><span class="nav-number">5.6.</span> <span class="nav-text">列空间和零空间</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方程组的几何解释"><span class="nav-number">1.</span> <span class="nav-text">方程组的几何解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三元方程"><span class="nav-number">1.2.</span> <span class="nav-text">三元方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵与向量的乘法"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵与向量的乘法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵消元"><span class="nav-number">2.</span> <span class="nav-text">矩阵消元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#消元法Method-of-Elimination"><span class="nav-number">2.1.</span> <span class="nav-text">消元法Method of Elimination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回代-Back-Substitution"><span class="nav-number">2.2.</span> <span class="nav-text">回代 Back-Substitution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消元矩阵-Elimination-Matrices"><span class="nav-number">2.3.</span> <span class="nav-text">消元矩阵 Elimination Matrices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#置换矩阵Permutation"><span class="nav-number">2.4.</span> <span class="nav-text">置换矩阵Permutation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵乘法和逆矩阵"><span class="nav-number">3.</span> <span class="nav-text">矩阵乘法和逆矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘法Matrix-multiplication"><span class="nav-number">3.1.</span> <span class="nav-text">矩阵乘法Matrix multiplication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准方法（行乘以列）"><span class="nav-number">3.1.1.</span> <span class="nav-text">标准方法（行乘以列）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列操作"><span class="nav-number">3.1.2.</span> <span class="nav-text">列操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行操作"><span class="nav-number">3.1.3.</span> <span class="nav-text">行操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行乘以列"><span class="nav-number">3.1.4.</span> <span class="nav-text">行乘以列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分块乘法"><span class="nav-number">3.1.5.</span> <span class="nav-text">分块乘法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆矩阵Inverse"><span class="nav-number">3.2.</span> <span class="nav-text">逆矩阵Inverse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯-若尔当消元法-Gauss-Jordan-Elimination"><span class="nav-number">3.2.1.</span> <span class="nav-text">高斯-若尔当消元法 Gauss-Jordan Elimination</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A的LU分解"><span class="nav-number">4.</span> <span class="nav-text">A的LU分解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘积的逆矩阵Inverse-of-product"><span class="nav-number">4.1.</span> <span class="nav-text">矩阵乘积的逆矩阵Inverse of product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘积的转置Transpose-of-a-product"><span class="nav-number">4.2.</span> <span class="nav-text">矩阵乘积的转置Transpose of a product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的LU分解"><span class="nav-number">4.3.</span> <span class="nav-text">矩阵的LU分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消元法所需的运算量"><span class="nav-number">4.4.</span> <span class="nav-text">消元法所需的运算量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行转换Row-exchanges"><span class="nav-number">4.5.</span> <span class="nav-text">行转换Row exchanges</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转置、置换和空间"><span class="nav-number">5.</span> <span class="nav-text">转置、置换和空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#置换-Permutations"><span class="nav-number">5.1.</span> <span class="nav-text">置换 Permutations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转置-Transposes"><span class="nav-number">5.2.</span> <span class="nav-text">转置 Transposes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量空间"><span class="nav-number">5.3.</span> <span class="nav-text">向量空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子空间"><span class="nav-number">5.4.</span> <span class="nav-text">子空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列空间Colunmn-spaces"><span class="nav-number">5.5.</span> <span class="nav-text">列空间Colunmn spaces</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#列空间和零空间"><span class="nav-number">6.</span> <span class="nav-text">列空间和零空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列空间-Column-space"><span class="nav-number">6.1.</span> <span class="nav-text">列空间 Column space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零空间（或化零空间）Nullspace"><span class="nav-number">6.2.</span> <span class="nav-text">零空间（或化零空间）Nullspace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b值的影响-Other-values-of-b"><span class="nav-number">6.3.</span> <span class="nav-text">b值的影响 Other values of b</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1545,7 +1586,7 @@ P^{-1}=P^T\\即P^TP=I</script><h2 id="转置-Transposes"><a href="#转置-Transp
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">116.7k</span>
+    <span title="Site words total count">117.7k</span>
   
 </div>
 
