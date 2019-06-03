@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/10.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/11.png">
 <meta property="og:image" content="https://www.shelhon.cn/posts/35508c6a/12.png">
-<meta property="og:updated_time" content="2019-02-21T13:43:22.068Z">
+<meta property="og:updated_time" content="2019-02-22T08:45:14.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性代数笔记(一)">
 <meta name="twitter:description" content="到底意难平  基于麻省理工公开课的线性代数这是一门关于矩阵理论和线性代数的基础课程。重点是在其他学科中有用的主题，包括方程组，向量空间，行列式，特征值，相似度，正定矩阵。 线性代数的概念对于理解机器学习背后的原理非常重要，尤其是在深度学习领域中。所以为了以后在工业大数据的方向里少一些疑惑，特地先预习一遍线性代数作为一个打基础的过程。 以下的每一章内容就按公开课的每一课时的内容来划分。">
@@ -342,8 +342,8 @@
         
             <span class="post-updated">
             &nbsp; | &nbsp; 更新于
-            <time itemprop="dateUpdated" datetime="2019-02-21T21:43:22+08:00" content="2019-02-21">
-                2019-02-21
+            <time itemprop="dateUpdated" datetime="2019-02-22T16:45:14+08:00" content="2019-02-22">
+                2019-02-22
             </time>
             </span>
         
@@ -1327,7 +1327,7 @@ A=\begin{bmatrix}
 <h2 id="特解-special-solutions"><a href="#特解-special-solutions" class="headerlink" title="特解 special solutions"></a>特解 special solutions</h2><p>当将系数矩阵变换为上三角阵U时，就可以用回代的方式求得方程Ux=0的解。本例中，包含主元的矩阵第1列和第3列为主元列，而不包含主元的第2列和第4列为自由列，对自由变量（free variable)$x_2$ 和 $x_4$我们可以进行赋值，例如令 $x_2=1$而$x_4=0$。则有</p>
 <script type="math/tex; mode=display">
 2x_3 + 4x_4 =0 → x_3 =0\\
-x_1 + 2x_2 + 2x_3 + 2x_4 =0→x_1 = -1</script><p>因此可得一解x=$\begin{bmatrix}-2\\1\\0\\0\end{bmatrix}$,其任意倍数均在矩阵的零空间之内。</p>
+x_1 + 2x_2 + 2x_3 + 2x_4 =0→x_1 = -2</script><p>因此可得一解x=$\begin{bmatrix}-2\\1\\0\\0\end{bmatrix}$,其任意倍数均在矩阵的零空间之内。</p>
 <p>取自由变量中$x_2$ =0 而$x_4$=1，则可得到另一解x=$\begin{bmatrix}2\\0\\－2\\1\end{bmatrix}$</p>
 <p>矩阵A的零空间就是这些“特解”向量的线性组合所构成的向量空间。</p>
 <p>矩阵的秩r等于其主元列的数目，因此自由列的数目等于n-r，即列的数目减去主元列的数目，这个数值等于特解的数目和零空间的堆数。</p>
@@ -1388,8 +1388,8 @@ I & F\\
 r　　主元行\\
 m-r 　0向量行
 \end{matrix}\\
-第一列为r主元列，第二列为 n-r自由列</script><p>这里的I是一个r×r的方阵，F即自由列消元后组成的部分。</p>
-<p>原方程Ax=0变为求解R的主元行乘以x，$\left[ \begin{array} { l l } { I } &amp; { F } \end{array} \right] \left[ \begin{array} { l } { x _ { p i v ot } } \ { x _ { f r e e } } \end{array} \right]$=0.我们将Ax=0的特解作为列向量写成一个矩阵N，即零空间矩阵。则其形式为N=$\left[ \begin{array} { l } { } \ { I } \end{array} \right]$。这里的I为一个(n-r)×(n-r)的矩阵，就是对n-r个自由变量分别赋值1所构造出来的，零空间矩阵满足RN=0，0矩阵是一个m×(n-r)的矩阵。则从矩阵分块乘法运算可知零空间矩阵上半部分为-F，即N最终形式为</p>
+第一列为r主元列，第二列为 n-r自由列</script><p>这里的<strong>I</strong>是一个r×r的方阵，<strong>F</strong>即自由列消元后组成的部分。</p>
+<p>原方程Ax=0变为求解R的主元行乘以x，$\left[ \begin{array} { l l } { I } &amp; { F } \end{array} \right] \left[ \begin{array} { l } { x _ { p i v ot } } \ { x _ { f r e e } } \end{array} \right]$=0.我们将Ax=0的特解作为列向量写成一个矩阵N，即零空间矩阵。则其形式为N=$\left[ \begin{array} { l } { } \ { I } \end{array} \right]$。这里的<strong>I</strong>为一个(n-r)×(n-r)的矩阵，就是对n-r个自由变量分别赋值1所构造出来的，零空间矩阵满足RN=0，0矩阵是一个m×(n-r)的矩阵。则从矩阵分块乘法运算可知零空间矩阵上半部分为-F，即N最终形式为</p>
 <script type="math/tex; mode=display">
 \begin{bmatrix}
 {-} F\\
@@ -1564,7 +1564,7 @@ m-r 　0向量行
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1575,7 +1575,7 @@ m-r 　0向量行
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1586,7 +1586,7 @@ m-r 　0向量行
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1703,7 +1703,7 @@ m-r 　0向量行
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">118.9k</span>
+    <span title="Site words total count">130.3k</span>
   
 </div>
 

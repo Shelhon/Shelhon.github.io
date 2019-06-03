@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+  
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="深度学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="该笔记是看李沐视频学习的。内容大概分为几部分  深度学习基础 线性模型 CNN RNN 求导、训练 Gluon最佳实践 hybridize 自动并行 多卡训练   计算机视觉 Resnet SSD   自然语言处理 Word embedding seq2seq   增强学习 对抗网络 推荐系统     《动手学深度学习》是面向中文读者的能运行、可讨论的深度学习教科书。也是视频的参考书籍，可以通过访">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动手学深度学习">
+<meta property="og:url" content="https://www.shelhon.cn/posts/b34b3e68.html">
+<meta property="og:site_name" content="无问西东">
+<meta property="og:description" content="该笔记是看李沐视频学习的。内容大概分为几部分  深度学习基础 线性模型 CNN RNN 求导、训练 Gluon最佳实践 hybridize 自动并行 多卡训练   计算机视觉 Resnet SSD   自然语言处理 Word embedding seq2seq   增强学习 对抗网络 推荐系统     《动手学深度学习》是面向中文读者的能运行、可讨论的深度学习教科书。也是视频的参考书籍，可以通过访">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-23T13:13:10.602Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动手学深度学习">
+<meta name="twitter:description" content="该笔记是看李沐视频学习的。内容大概分为几部分  深度学习基础 线性模型 CNN RNN 求导、训练 Gluon最佳实践 hybridize 自动并行 多卡训练   计算机视觉 Resnet SSD   自然语言处理 Word embedding seq2seq   增强学习 对抗网络 推荐系统     《动手学深度学习》是面向中文读者的能运行、可讨论的深度学习教科书。也是视频的参考书籍，可以通过访">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.shelhon.cn/posts/b34b3e68.html"/>
+
+
+
+
+
+  <title>动手学深度学习 | 无问西东</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3275656b1c327868bf311aa7c5fdabd2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/Shelhon/Shelhon.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无问西东</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">糊涂脸水聪明枕</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.shelhon.cn/posts/b34b3e68.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qsx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无问西东">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">动手学深度学习</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T14:30:23+08:00">
+                2019-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+    
+    
+        
+            <span class="post-updated">
+            &nbsp; | &nbsp; 更新于
+            <time itemprop="dateUpdated" datetime="2019-04-23T21:13:10+08:00" content="2019-04-23">
+                2019-04-23
+            </time>
+            </span>
+        
+		  
+		 
+		 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,591
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>该笔记是看李沐视频学习的。<br>内容大概分为几部分</p>
+<ul>
+<li>深度学习基础<ul>
+<li>线性模型</li>
+<li>CNN</li>
+<li>RNN</li>
+<li>求导、训练</li>
+<li>Gluon最佳实践<ul>
+<li>hybridize</li>
+<li>自动并行</li>
+<li>多卡训练</li>
+</ul>
+</li>
+<li>计算机视觉<ul>
+<li>Resnet</li>
+<li>SSD</li>
+</ul>
+</li>
+<li>自然语言处理<ul>
+<li>Word embedding</li>
+<li>seq2seq</li>
+</ul>
+</li>
+<li>增强学习</li>
+<li>对抗网络</li>
+<li>推荐系统 </li>
+</ul>
+</li>
+</ul>
+<p>《动手学深度学习》是面向中文读者的能运行、可讨论的深度学习教科书。也是视频的参考书籍，可以通过访问 <a href="https://zh.d2l.ai" target="_blank" rel="noopener">https://zh.d2l.ai</a> 获取最新的内容 更新。希望通过一个月的时间学习加练习，来加强自己对深度学习的理解，为将来的论文和工作打基础。</p>
+<a id="more"></a>
+<h1 id="配置Jupyter"><a href="#配置Jupyter" class="headerlink" title="配置Jupyter"></a>配置Jupyter</h1><p>以下命令都是进入⽂件夹“d2l-zh”的窗口来打开cmd<br>激活环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda activate gluon # 若conda版本低于4.4，使⽤命令activate gluon </span><br><span class="line">#需退出虚拟环境</span><br><span class="line">conda deactivate</span><br></pre></td></tr></table></figure></p>
+<p>打开Jupyter记事本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure></p>
+<p>更新代码的步骤<br>第⼀步是重新下载最新的包含本书全部代码的压缩包。下载地址为<a href="https://zh.d2l.ai/d2l-zh.zip。" target="_blank" rel="noopener">https://zh.d2l.ai/d2l-zh.zip。</a> 解压后进⼊⽂件夹“d2l-zh”。 </p>
+<p>第⼆步是使⽤下⾯的命令更新运⾏环境：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env update -f environment.yml</span><br></pre></td></tr></table></figure>
+<hr>
+<p>使⽤GPU版的MXNet </p>
+<p>第⼀步是卸载CPU版本MXNet。如果没有安装虚拟环境，可以跳过此步。如果已安装虚拟环境， 需要先激活该环境，再卸载CPU版本的MXNet。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall mxnet</span><br></pre></td></tr></table></figure>
+<p>第⼆步是更新依赖为GPU版本的MXNet。使⽤⽂本编辑器打开本书的代码所在根⽬录下的⽂ 件environment.yml，将⾥⾯的字符串“mxnet”替换成对应的GPU版本。例如，如果计算机 上装的是8.0版本的CUDA，将该⽂件中的字符串“mxnet”改为“mxnet-cu80”。如果计算机上 安装了其他版本的CUDA（如7.5、9.0、9.2等），对该⽂件中的字符串“mxnet”做类似修改（如 改为“mxnet-cu75”“mxnet-cu90”“mxnet-cu92”等）。保存⽂件后退出。 </p>
+<p>第三步是更新虚拟环境，执⾏命令 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env update -f environment.yml</span><br></pre></td></tr></table></figure>
+<p>之后，我们只需要再激活安装环境就可以使⽤GPU版的MXNet运⾏本书中的代码了。需要提醒的 是，如果之后下载了新代码，那么还需要重复这3步操作以使⽤GPU版的MXNet。</p>
+<h1 id="数学基础概念"><a href="#数学基础概念" class="headerlink" title="数学基础概念"></a>数学基础概念</h1><p>一般像这里指的维度0和维度1是指矩阵的行和列</p>
+<p>我们使用符号$\odot$表示两个矩阵按元素做乘法的运算：</p>
+<script type="math/tex; mode=display">
+\boldsymbol{A} \odot \boldsymbol{B} = 
+\begin{bmatrix}
+    a_{11}  b_{11} & a_{12}  b_{12} & \dots  & a_{1n}  b_{1n} \\
+    a_{21}  b_{21} & a_{22}  b_{22} & \dots  & a_{2n}  b_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{m1}  b_{m1} & a_{m2}  b_{m2} & \dots  & a_{mn}  b_{mn}
+\end{bmatrix}.</script><hr>
+<h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><p>设$n$维向量$\boldsymbol{x}$中的元素为$x_1, \ldots, x_n$。向量$\boldsymbol{x}$的$L_p$范数为</p>
+<script type="math/tex; mode=display">\|\boldsymbol{x}\|_p = \left(\sum_{i=1}^n \left|x_i \right|^p \right)^{1/p}.</script><p>例如，$\boldsymbol{x}$的$L_1$范数是该向量元素绝对值之和：</p>
+<script type="math/tex; mode=display">\|\boldsymbol{x}\|_1 = \sum_{i=1}^n \left|x_i \right|.</script><p>而$\boldsymbol{x}$的$L_2$范数是该向量元素平方和的平方根：</p>
+<script type="math/tex; mode=display">\|\boldsymbol{x}\|_2 = \sqrt{\sum_{i=1}^n x_i^2}.</script><p>我们通常用$|\boldsymbol{x}|$指代$|\boldsymbol{x}|_2$。</p>
+<p>设$\boldsymbol{X}$是一个$m$行$n$列矩阵。矩阵$\boldsymbol{X}$的Frobenius范数为该矩阵元素平方和的平方根：</p>
+<script type="math/tex; mode=display">\|\boldsymbol{X}\|_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n x_{ij}^2},</script><p>其中$x_{ij}$为矩阵$\boldsymbol{X}$在第$i$行第$j$列的元素。</p>
+<h2 id="特征向量和特征值"><a href="#特征向量和特征值" class="headerlink" title="特征向量和特征值"></a>特征向量和特征值</h2><p>对于一个$n$行$n$列的矩阵$\boldsymbol{A}$，假设有标量$\lambda$和非零的$n$维向量$\boldsymbol{v}$使</p>
+<script type="math/tex; mode=display">\boldsymbol{A} \boldsymbol{v} = \lambda \boldsymbol{v}</script><p>那么$\boldsymbol{v}$是矩阵$\boldsymbol{A}$的一个特征向量，标量$\lambda$是$\boldsymbol{v}$对应的特征值。</p>
+<h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><p>假设函数$f: \mathbb{R}^n \rightarrow \mathbb{R}$的输入是一个$n$维向量$\boldsymbol{x} = [x_1, x_2, \ldots, x_n]^\top$，输出是标量。函数$f(\boldsymbol{x})$有关$\boldsymbol{x}$的梯度是一个由$n$个偏导数组成的向量：</p>
+<script type="math/tex; mode=display">\nabla_{\boldsymbol{x}} f(\boldsymbol{x}) = \bigg[\frac{\partial f(\boldsymbol{x})}{\partial x_1}, \frac{\partial f(\boldsymbol{x})}{\partial x_2}, \ldots, \frac{\partial f(\boldsymbol{x})}{\partial x_n}\bigg]^\top.</script><p>为表示简洁，我们有时用$\nabla f(\boldsymbol{x})$代替$\nabla_{\boldsymbol{x}} f(\boldsymbol{x})$。</p>
+<p>假设$\boldsymbol{x}$是一个向量，常见的梯度演算包括</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\nabla_{\boldsymbol{x}} \boldsymbol{A}^\top \boldsymbol{x} &= \boldsymbol{A}, \\
+\nabla_{\boldsymbol{x}} \boldsymbol{x}^\top \boldsymbol{A}  &= \boldsymbol{A}, \\
+\nabla_{\boldsymbol{x}} \boldsymbol{x}^\top \boldsymbol{A} \boldsymbol{x}  &= (\boldsymbol{A} + \boldsymbol{A}^\top)\boldsymbol{x},\\
+\nabla_{\boldsymbol{x}} \|\boldsymbol{x} \|^2 &= \nabla_{\boldsymbol{x}} \boldsymbol{x}^\top \boldsymbol{x} = 2\boldsymbol{x}.
+\end{aligned}</script><p>类似地，假设$\boldsymbol{X}$是一个矩阵，那么</p>
+<script type="math/tex; mode=display">\nabla_{\boldsymbol{X}} \|\boldsymbol{X} \|_F^2 = 2\boldsymbol{X}.</script><h2 id="海森矩阵"><a href="#海森矩阵" class="headerlink" title="海森矩阵"></a>海森矩阵</h2><p>假设函数$f: \mathbb{R}^n \rightarrow \mathbb{R}$的输入是一个$n$维向量$\boldsymbol{x} = [x_1, x_2, \ldots, x_n]^\top$，输出是标量。假定函数$f$所有的二阶偏导数都存在，$f$的海森矩阵$\boldsymbol{H}$是一个$n$行$n$列的矩阵：</p>
+<script type="math/tex; mode=display">
+\boldsymbol{H} = 
+\begin{bmatrix}
+    \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \dots  & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\
+    \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \dots  & \frac{\partial^2 f}{\partial x_2 \partial x_n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \dots  & \frac{\partial^2 f}{\partial x_n^2}
+\end{bmatrix}</script><p>其中二阶偏导数</p>
+<script type="math/tex; mode=display">\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial }{\partial x_j} \left(\frac{\partial f}{ \partial x_i}\right)</script><h2 id="运算内存开销"><a href="#运算内存开销" class="headerlink" title="运算内存开销"></a>运算内存开销</h2><p>在Python中操作经常会开心的内存来存储运算结果。<br>即使像Y=X+Y这样的运算，也会开新的内存，然后将Y指向新的内存。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">before = id(Y)</span><br><span class="line">Y = Y + X</span><br><span class="line">id(Y) == before</span><br><span class="line">输出</span><br><span class="line"><span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<p>如果想把结果保存到指定内存，可以先通过zeros_like创建和Y形状相同且元素为0的NDArray，记为Z。接下来，我们把X+Y的结果通过[:]写进Z对应的的内存中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">Z = Y.zeros_like()</span><br><span class="line">before = id(Z)</span><br><span class="line">Z[:] = X + Y</span><br><span class="line">id(Z) == before</span><br><span class="line">输出</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>但是实际上，这里还是为X+Y开了临时内存来存储计算结果，再复制到Z对应的内存。如果想避免这个临时内存开销，我们可以使用运算符全名函数中的out参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">nd.elemwise_add(X, Y, out=Z)</span><br><span class="line">id(Z) == before</span><br><span class="line">输出</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>如果X的值在之后程序中不会复用，可以用 <code>X[:] = X + Y</code> 或者 <code>X += Y</code> 来减少运算的内存开销。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">before = id(X)</span><br><span class="line">X += Y</span><br><span class="line">id(X) == before</span><br><span class="line">输出</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<h1 id="从上手到多类分类"><a href="#从上手到多类分类" class="headerlink" title="从上手到多类分类"></a>从上手到多类分类</h1><h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>何为线性回归？</p>
+<p>就是给定一个数据点的集合以及对应的目标Y， 然后线性模型就会找一根线，其由向量w和位置b组成，来最好的近似每个样本的x[i]和y[i]，用数学符号来表示就是将学w和b来预测。</p>
+<script type="math/tex; mode=display">
+\hat{y}=X w+b</script><p>并且最小化所有数据点上的平方误差。</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{n}\left(\hat{y}_{i}-y_{i}\right)^{2}</script><h3 id="创建数据集"><a href="#创建数据集" class="headerlink" title="创建数据集"></a>创建数据集</h3><p>使用人工创建数据集，方便我们知道真实的模型是怎么样子的，采用以下方法来生成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y[i] = 2 * X[i][0] - 3.4 * X[i][1] + 4.2+noise</span><br><span class="line">其中noise是噪音，服从均值0和方差为0.1的正态分布</span><br></pre></td></tr></table></figure>
+<p>注意到X的每一行是一个长度为2的向量，而y的每一行是一个长度为1的向量（标量）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> ndarray <span class="keyword">as</span> nd</span><br><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> autograd</span><br><span class="line"></span><br><span class="line">num_inputs = <span class="number">2</span> <span class="comment"># X 的维度是2 </span></span><br><span class="line">num_examples= <span class="number">1000</span>  <span class="comment"># 生成1000个样本</span></span><br><span class="line"></span><br><span class="line">true_w = [<span class="number">2</span> , <span class="number">-3.4</span>] <span class="comment"># w的值为2 和 -3.4</span></span><br><span class="line">true_b = <span class="number">4.2</span>  <span class="comment"># b的值为4.2</span></span><br><span class="line"></span><br><span class="line">X = nd.random.normal(shape=(num_examples,num_inputs)) <span class="comment"># 这里是指生成1000行，2列</span></span><br><span class="line">y = true_w[<span class="number">0</span>] * X[:,<span class="number">0</span>] + true_w[<span class="number">1</span>] * X[:,<span class="number">1</span>] + true_b</span><br><span class="line">y += <span class="number">0.01</span> * nd.random.normal(shape=y.shape)</span><br><span class="line"></span><br><span class="line">print( X[<span class="number">0</span>:<span class="number">10</span>] , y[<span class="number">0</span>:<span class="number">10</span>])</span><br><span class="line"><span class="comment">#打印X的1到10行，y的前10个值</span></span><br></pre></td></tr></table></figure>
+<p>有个小知识点，关于转型的问题</p>
+<p>上面出现了，数组+浮点数 得到了 数组，该数组是每一个值都加一次浮点数</p>
+<p>如果数组加布尔型，也是可以的，数组里的每一个值都把该布尔型转换成float，再加一次。</p>
+<h3 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a>数据读取</h3><p>定义一个函数，每次返回batch_size个随机的样本和对应的目标。通过Python的yield来构造一个迭代器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">batch_size= <span class="number">10</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">data_iter</span><span class="params">()</span>:</span></span><br><span class="line">  <span class="comment">#产生一个随机索引</span></span><br><span class="line">  idx =  list(range(num_examples))</span><br><span class="line">  random.shuffle(idx)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, num_examples , batch_size):</span><br><span class="line">    j = nd.array(idx[i:min(i + batch_size , num_examples)])</span><br><span class="line">    <span class="keyword">yield</span> nd.take(x , j), nd.take(y , j)</span><br><span class="line">    <span class="comment"># take(a,indices，axis=None,out=None,mode="raise"），其中a是指定数组，indices是指定索引的位置。axis决定是返回数组或者矩阵</span></span><br></pre></td></tr></table></figure>
+<p>下面代码读取第一个随机数据块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> data, label <span class="keyword">in</span> data_iter():</span><br><span class="line">  print(data , label)</span><br><span class="line">  <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<h3 id="初始化模型"><a href="#初始化模型" class="headerlink" title="初始化模型"></a>初始化模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w = nd.random.normal(shape=(num_inputs,<span class="number">1</span>))</span><br><span class="line">b = nz.zeros((<span class="number">1</span>,))</span><br><span class="line">params = [w,b]</span><br></pre></td></tr></table></figure>
+<p>因为之后训练时需要对这些参数求导来更新它们的值，所以需要创建它们的梯度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> param <span class="keyword">in</span> params:</span><br><span class="line">  param.attach_grad()</span><br></pre></td></tr></table></figure>
+<h3 id="定义模型"><a href="#定义模型" class="headerlink" title="定义模型"></a>定义模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">net</span><span class="params">(x)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> nd.dot(X , w) + b</span><br></pre></td></tr></table></figure>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>使用常见的平方误差来衡量预测目标和真实目标之间的差距</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_loss</span><span class="params">( yhat , y)</span>:</span></span><br><span class="line">   <span class="comment">#注意这里把y变形成yhat的形状来避免自动光法</span></span><br><span class="line">   <span class="keyword">return</span> (yhat - y.reshape(yhat.shape)) **<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>虽然线性回归有显式解，但绝大部分模型没有。所以通过随机梯度下降来求解。每一步都将模型参数沿着梯度的反方向走特定的距离lr。这个距离一般叫<strong>学习率</strong>。之后又会一直用这个函数，保存到utils.py里</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SGD</span><span class="params">(params , lr)</span>:</span></span><br><span class="line">  <span class="keyword">for</span> param <span class="keyword">in</span> params:</span><br><span class="line">    param[ : ] = param - lr *param.grad</span><br></pre></td></tr></table></figure>
+<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>训练通常需要迭代数据次数，一次迭代里，每次随机读取固定数个数据点，计算梯度并且更新模型参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">epochs = <span class="number">5</span></span><br><span class="line">learning_rate = <span class="number">0.001</span></span><br><span class="line"><span class="keyword">for</span> e <span class="keyword">in</span> range(epochs):</span><br><span class="line">  total_loss = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> data , label <span class="keyword">in</span> data_iter():</span><br><span class="line">    <span class="keyword">with</span> autograd.record():</span><br><span class="line">      output = net(data)</span><br><span class="line">      loss = square_loss(output, label)</span><br><span class="line">    loss.backward()</span><br><span class="line">    SGD(params, learning_rate)</span><br><span class="line">    total_loss += nd.sum(loss).asscalar()</span><br><span class="line">  print(<span class="string">"Epoch %d, average loss: %f"</span> % (e, total_loss/num_examples))</span><br></pre></td></tr></table></figure>
+<p>这时候就可以跑出结果了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输出：</span><br><span class="line">epoch 1, loss 0.000048</span><br><span class="line">epoch 2, loss 0.000048</span><br><span class="line">epoch 3, loss 0.000049</span><br><span class="line">epoch 4, loss 0.000048</span><br><span class="line">epoch 5, loss 0.000048</span><br></pre></td></tr></table></figure>
+<p>训练后，用学习到的参数和真实参数进行比较</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">true_w,w</span><br><span class="line">输出</span><br><span class="line">([<span class="number">2</span>, <span class="number">-3.4</span>], </span><br><span class="line"> [[ <span class="number">1.9999499</span>]，[<span class="number">-3.4000692</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">true_b, b</span><br><span class="line">(<span class="number">4.2</span>, </span><br><span class="line"> [<span class="number">4.1994824</span>]</span><br></pre></td></tr></table></figure>
+<p>可以看得出来数据是非常接近的。</p>
+<h2 id="使用gluon的线性回归"><a href="#使用gluon的线性回归" class="headerlink" title="使用gluon的线性回归"></a>使用gluon的线性回归</h2><p>同样的模型，使用高层抽象包gluon</p>
+<h3 id="创建数据集-1"><a href="#创建数据集-1" class="headerlink" title="创建数据集"></a>创建数据集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> autograd, nd</span><br><span class="line">num_inputs = <span class="number">2</span> </span><br><span class="line">num_examples = <span class="number">1000</span> </span><br><span class="line">true_w = [<span class="number">2</span>, <span class="number">-3.4</span>] </span><br><span class="line">true_b = <span class="number">4.2</span> </span><br><span class="line">features = nd.random.normal(scale=<span class="number">1</span>, shape=(num_examples, num_inputs)) </span><br><span class="line">labels = true_w[<span class="number">0</span>] * features[:, <span class="number">0</span>] + true_w[<span class="number">1</span>] * features[:, <span class="number">1</span>] + true_b </span><br><span class="line">labels += nd.random.normal(scale=<span class="number">0.01</span>, shape=labels.shape)</span><br></pre></td></tr></table></figure>
+<h3 id="数据读取-1"><a href="#数据读取-1" class="headerlink" title="数据读取"></a>数据读取</h3><p>这里使用data模块来读取数据<br>但是由于data经常用作变量名，我们将导入的data模块用添加gluon的首字母的假名gdata代替</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet.gluon <span class="keyword">import</span> data <span class="keyword">as</span> gdata</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">10</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 将训练数据的特征和标签组合 </span></span><br><span class="line">dataset = gdata.ArrayDataset(features, labels) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机读取⼩批量 </span></span><br><span class="line">data_iter = gdata.DataLoader(dataset, batch_size, shuffle=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>这里的data_iter的使用跟上一部分的一样，让我们读取并打印第一个小批量的数据样本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x , y <span class="keyword">in</span> data_iter:</span><br><span class="line">  print(x, y)</span><br><span class="line">  <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<h3 id="定义模型-1"><a href="#定义模型-1" class="headerlink" title="定义模型"></a>定义模型</h3><p>先导入nn(neural networks缩写）模块，里面定义了大量神经网络的层。<br>我们先定义一个sequential实例，在gluon中，sequential实例可以看作是一个串联各个层的容器。在构造模型时，在该容易依次添加层。当给定输入数据时，容器每一层将依次计算将输出作为下一层的输入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet.gluon <span class="keyword">import</span> nn</span><br><span class="line"></span><br><span class="line">net = nn.sequential()</span><br></pre></td></tr></table></figure>
+<p>线性回归在神经网络图中，作为一个单层神经网络，线性回归输出层中的神经元和输入层中各个输入完全连接。<br>因此，线性回归的输出层又叫全连接层。在gluon中，全连接层是一个dense实例，我们定义该层输出个数为1.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.add(nn.Dense(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>在gluon中，我们无需定义每一层输入的形状，比如线性回归的输入个数。当模型得到数据时，在后面执行next(X)时，模型将自动腿短出每一层的输入个数。</p>
+<h3 id="初始化模型参数"><a href="#初始化模型参数" class="headerlink" title="初始化模型参数"></a>初始化模型参数</h3><p>在使用net之前，需要初始化模型参数，比如线性回归的权重和偏差。</p>
+<p>从MXNet中导入inti模块，该模块提供模型初始化的各种方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> init</span><br><span class="line">net.initialize(init.Normal(sigma = <span class="number">0.01</span>))</span><br><span class="line"><span class="comment"># 通过init.Normal(sigma= 0.01)指定权重参数每个元素将在初始化时</span></span><br><span class="line"><span class="comment">#      随机采样于均值为0，标准差为0.01的正态分布。</span></span><br><span class="line"><span class="comment">#      偏差参数默认会初始化为零</span></span><br></pre></td></tr></table></figure>
+<h3 id="定义损失函数"><a href="#定义损失函数" class="headerlink" title="定义损失函数"></a>定义损失函数</h3><p>在gluon中，loss模块定义了各种损失函数，用假名gloss代替导入的loss模块，直接使用它提供的平方损失作为模型的损失函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet.gluon <span class="keyword">import</span> loss <span class="keyword">as</span> gloss</span><br><span class="line">loss = gloss.L2Loss()  <span class="comment">#平方损失函数又称为L2范数损失</span></span><br></pre></td></tr></table></figure>
+<h3 id="定义优化算法"><a href="#定义优化算法" class="headerlink" title="定义优化算法"></a>定义优化算法</h3><p>同样，我们也无需实现小批量的随机梯度下降。导入gluon后，创建一个Trainer实例，并指定学习率为0.03的小批量随机梯度下降（sgd）为优化算法。该优化算法用来迭代net实例所有通过add函数嵌套的层所包含的全部参数。<br>这些参数可以通过collect_params函数获取。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> gluon</span><br><span class="line">trainer = gluon.Trainer(net.collect_params(), <span class="string">'sgd'</span> , &#123;learning_rate<span class="string">' : 0.03&#125;)</span></span><br></pre></td></tr></table></figure>
+<h3 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h3><p>在使用gluon训练模型时，通过调用Trainer实例的step函数来迭代模型参数。</p>
+<p>由于变量 l 是长度为batch_size的以为NDArray，执行 l.backward()等价于执行 l.sum().backward().</p>
+<p>按照小批量随机梯度下降的定义，我们在step函数中指明批量大小，从面对批量中样本梯度求平均。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">num_epochs =<span class="number">3</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">1</span> ,num_epochs + <span class="number">1</span>):</span><br><span class="line">  <span class="keyword">for</span> x , y <span class="keyword">in</span> data_iter:</span><br><span class="line">    <span class="keyword">with</span> autograd.record():</span><br><span class="line">      l = loss( net(X) , y)</span><br><span class="line">    l.backward()</span><br><span class="line">    trainer.step(batch_size)</span><br><span class="line">  l = loss(net(features),labels)</span><br><span class="line">  print(<span class="string">'epoch %d ,loss: %f '</span>%(epoch, l.mean().asnumpy()))</span><br></pre></td></tr></table></figure>
+<p>输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">epoch 1, loss: 0.040645 </span><br><span class="line">epoch 2, loss: 0.000157 </span><br><span class="line">epoch 3, loss: 0.000051</span><br></pre></td></tr></table></figure></p>
+<p>然后分别比较学到的模型参数和真实的模型参数。<br>我们从net获得需要的层，并访问起权重（weight）和偏差（bias）。学到的参数和真实的参数很接近。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dense = net[<span class="number">0</span>]</span><br><span class="line">true_w , dens.weight.data()</span><br></pre></td></tr></table></figure>
+<p>输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">([2, -3.4], [[ 1.9996208 -3.399555 ]] </span><br><span class="line">&lt;NDArray 1x2 @cpu(0)&gt;)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">true_b , dense.bias.data()</span><br></pre></td></tr></table></figure>
+<p>输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(4.2, [4.199315] </span><br><span class="line">&lt;NDArray 1 @cpu(0)&gt;)</span><br></pre></td></tr></table></figure></p>
+<p>当遇到关于mxnet不懂的地方，可以尝试使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">想访问weight的梯度，但是不知道怎么做，可以这样做：</span><br><span class="line">dense.weight?</span><br><span class="line">里面会列出详细的文档</span><br><span class="line">或者</span><br><span class="line">dense.weight??</span><br><span class="line">甚至有实现的方法</span><br></pre></td></tr></table></figure></p>
+<h2 id="多类逻辑回归（softmax回归）"><a href="#多类逻辑回归（softmax回归）" class="headerlink" title="多类逻辑回归（softmax回归）"></a>多类逻辑回归（softmax回归）</h2><p>线性回归模型适用于输出为连续值的情况，但是碰到模型输出是一个像图像类别的离散值，我们可以使用诸如softmax回归在内的分类模型来进行离散值预测。</p>
+<p>和线性回归不同，softmax回归的输出单元从一个变成了多个，且引入了softmax运算，使运算更适合离散值的预测和训练。</p>
+<h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Just for fun!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Qsx 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+	<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------<i class="fa fa-paw"></i> 文章已经到尾 <i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+		
+	</div>
+	
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/8d1ad4e0.html" rel="next" title="线性代数笔记（二）">
+                <i class="fa fa-chevron-left"></i> 线性代数笔记（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/f4d8870.html" rel="prev" title="初识特征工程">
+                初识特征工程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Qsx" />
+            
+              <p class="site-author-name" itemprop="name">Qsx</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Shelhon" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ppp00qqq@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/qsxmybaby" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://zhihu.com/people/shelhon" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.kofes.cn/" title="cz" target="_blank">cz</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Jupyter"><span class="nav-number">1.</span> <span class="nav-text">配置Jupyter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学基础概念"><span class="nav-number">2.</span> <span class="nav-text">数学基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#范数"><span class="nav-number">2.1.</span> <span class="nav-text">范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征向量和特征值"><span class="nav-number">2.2.</span> <span class="nav-text">特征向量和特征值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度"><span class="nav-number">2.3.</span> <span class="nav-text">梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#海森矩阵"><span class="nav-number">2.4.</span> <span class="nav-text">海森矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算内存开销"><span class="nav-number">2.5.</span> <span class="nav-text">运算内存开销</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从上手到多类分类"><span class="nav-number">3.</span> <span class="nav-text">从上手到多类分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归"><span class="nav-number">3.1.</span> <span class="nav-text">线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据集"><span class="nav-number">3.1.1.</span> <span class="nav-text">创建数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据读取"><span class="nav-number">3.1.2.</span> <span class="nav-text">数据读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化模型"><span class="nav-number">3.1.3.</span> <span class="nav-text">初始化模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模型"><span class="nav-number">3.1.4.</span> <span class="nav-text">定义模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#损失函数"><span class="nav-number">3.1.5.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">3.1.6.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练"><span class="nav-number">3.1.7.</span> <span class="nav-text">训练</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用gluon的线性回归"><span class="nav-number">3.2.</span> <span class="nav-text">使用gluon的线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据集-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">创建数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据读取-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">数据读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模型-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">定义模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化模型参数"><span class="nav-number">3.2.4.</span> <span class="nav-text">初始化模型参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义损失函数"><span class="nav-number">3.2.5.</span> <span class="nav-text">定义损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义优化算法"><span class="nav-number">3.2.6.</span> <span class="nav-text">定义优化算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练模型"><span class="nav-number">3.2.7.</span> <span class="nav-text">训练模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多类逻辑回归（softmax回归）"><span class="nav-number">3.3.</span> <span class="nav-text">多类逻辑回归（softmax回归）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类问题"><span class="nav-number">3.3.1.</span> <span class="nav-text">分类问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qsx</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">130.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+
+</html>
