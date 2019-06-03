@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://www.shelhon.cn/posts/8ae97bf8.html</loc>
+    <lastmod>2019-06-03T09:11:20.988Z</lastmod>
+    <data>
+        <display>
+        <title>特征工程</title>
+        <pubTime>2019-04-29T08:47:03.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>算法</tag>
+         
+        <tag>特征工程</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.shelhon.cn/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.shelhon.cn/posts/b34b3e68.html</loc>
     <lastmod>2019-06-03T03:54:19.675Z</lastmod>
     <data>
@@ -105,9 +129,9 @@
          
         <tag>学习</tag>
          
-        <tag>框架</tag>
-         
         <tag>SpringMVC</tag>
+         
+        <tag>框架</tag>
          
          
            
@@ -131,9 +155,9 @@
          
         <tag>学习</tag>
          
-        <tag>Mybatis</tag>
-         
         <tag>框架</tag>
+         
+        <tag>Mybatis</tag>
          
          
            
@@ -157,9 +181,9 @@
          
         <tag>学习</tag>
          
-        <tag>Mybatis</tag>
-         
         <tag>框架</tag>
+         
+        <tag>Mybatis</tag>
          
          
            

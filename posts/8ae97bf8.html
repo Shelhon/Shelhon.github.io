@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+  
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="深度学习,算法,特征工程," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一个人可以走的很快，但是一群人却可以走的更远  这次学习的内容是《Feature Engineering for Machine Learning》在Apache.cn上的翻译版本。主要是迁移书本里的内容过来，小部分内容根据自己的理解稍微的修改了下。有九个章节:  引言 简单数学学的奇特技巧 文本数据：展开、过滤和分块 特征缩放的效果：从词袋到TF—IDF 类别特征：机器鸡时代的鸡蛋计数 降维：">
+<meta name="keywords" content="深度学习,算法,特征工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特征工程">
+<meta property="og:url" content="https://www.shelhon.cn/posts/8ae97bf8.html">
+<meta property="og:site_name" content="无问西东">
+<meta property="og:description" content="一个人可以走的很快，但是一群人却可以走的更远  这次学习的内容是《Feature Engineering for Machine Learning》在Apache.cn上的翻译版本。主要是迁移书本里的内容过来，小部分内容根据自己的理解稍微的修改了下。有九个章节:  引言 简单数学学的奇特技巧 文本数据：展开、过滤和分块 特征缩放的效果：从词袋到TF—IDF 类别特征：机器鸡时代的鸡蛋计数 降维：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/1.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/2.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/3.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/4.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/5.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/6.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/7.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/8.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/9.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/10.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/11.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/12.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/13.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/14.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/15.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/16.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/17.png">
+<meta property="og:image" content="https://www.shelhon.cn/posts/8ae97bf8/18.png">
+<meta property="og:updated_time" content="2019-06-03T09:11:20.988Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="特征工程">
+<meta name="twitter:description" content="一个人可以走的很快，但是一群人却可以走的更远  这次学习的内容是《Feature Engineering for Machine Learning》在Apache.cn上的翻译版本。主要是迁移书本里的内容过来，小部分内容根据自己的理解稍微的修改了下。有九个章节:  引言 简单数学学的奇特技巧 文本数据：展开、过滤和分块 特征缩放的效果：从词袋到TF—IDF 类别特征：机器鸡时代的鸡蛋计数 降维：">
+<meta name="twitter:image" content="https://www.shelhon.cn/posts/8ae97bf8/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.shelhon.cn/posts/8ae97bf8.html"/>
+
+
+
+
+
+  <title>特征工程 | 无问西东</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3275656b1c327868bf311aa7c5fdabd2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/Shelhon/Shelhon.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无问西东</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">糊涂脸水聪明枕</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.shelhon.cn/posts/8ae97bf8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qsx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无问西东">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">特征工程</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-29T16:47:03+08:00">
+                2019-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+    
+    
+        
+            <span class="post-updated">
+            &nbsp; | &nbsp; 更新于
+            <time itemprop="dateUpdated" datetime="2019-06-03T17:11:20+08:00" content="2019-06-03">
+                2019-06-03
+            </time>
+            </span>
+        
+		  
+		 
+		 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  8,824
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  31
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>一个人可以走的很快，但是一群人却可以走的更远</strong></p>
+</blockquote>
+<p>这次学习的内容是《Feature Engineering for Machine Learning》在Apache.cn上的翻译版本。主要是迁移书本里的内容过来，小部分内容根据自己的理解稍微的修改了下。<br>有九个章节:</p>
+<ol>
+<li>引言</li>
+<li>简单数学学的奇特技巧</li>
+<li>文本数据：展开、过滤和分块</li>
+<li>特征缩放的效果：从词袋到TF—IDF</li>
+<li>类别特征：机器鸡时代的鸡蛋计数</li>
+<li>降维：使用PCA压缩数据集</li>
+<li>非线性特征提取和模型堆叠</li>
+<li>自动化特征提取器：图像特征提取和深度学习</li>
+<li>回到特征：将它们放到一起</li>
+</ol>
+<a id="more"></a>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>什么是机器学习？</p>
+<p><code>将数据拟合到数学模型中来获得结论或者做出预测。</code></p>
+<p>机器学习怎么做？</p>
+<p><code>数学模型将特征作为输入，将原始数据的某些数学表现，转换成机器可以学习的模型格式。</code></p>
+<p>机器学习中重要的事情</p>
+<p><code>从数据中提取特征，因为正确的特征可以减轻模型的难度，得到更高质量的结果。而数据清洗能让特征工程做的更好。</code></p>
+<p>机器学习为什么要这样做？特征工程的原理是什么？</p>
+<p><code>这就是通过后续的章节来不断的了解和学习。要理解为什么这样设计，如何与其他技术相关联，以及每种方法的优缺点。准确的知道如何完成某件事，对底层原则有一个感觉，并且整合到已知的知识网络中。</code></p>
+<p>第1章从数字数据的基本特征工厂开始：过滤、合并、缩放、日志转换和能量转换以及交互功能。</p>
+<p>第2章和第3章探讨自然文本的特征工程：bag -of -words , n-gram 和短语检测。 </p>
+<p>第4章 将tf- idf 作为特征缩放的例子，讨论它的工作原理</p>
+<p>第5章 讨论分类变量的高效编码技术，包括特征哈希和 bin-counting，步伐开始加速。</p>
+<p>第6章进行主成分分析时，开始深入机器学习领域。</p>
+<p>第7章将 k - means 看作特征化技术，它将说明模型堆叠的有效理论。</p>
+<p>第8章关于图像的，在特征提取方面比文本数据更具挑战性，在得出深度学习是最新图像特征体术的解释之前，着眼于两种手动特征提取技术 SIFT 和 HOG。</p>
+<p>第9章 完成一个端到端示例中的几种不同技术，为学术论文数据集创建推荐器。</p>
+<hr>
+<h2 id="前提提示"><a href="#前提提示" class="headerlink" title="前提提示"></a>前提提示</h2><p>因为特征工程是一个广泛的话题。所以该书进行了一部分删减，不讨论音频数据的傅里叶分析，也忽略了与傅里叶分析密切相关的随机特征的讨论。对图像数据的深度学习来介绍特征学习，但是不会深入到众多的深度学习模型中。像超出范围的还包括随机投影、复杂文本特征模型（如word2vec和Brown聚类）以及潜在空间模型（如潜在狄里克雷分析和矩阵分解）。</p>
+<h2 id="机器学习流水线"><a href="#机器学习流水线" class="headerlink" title="机器学习流水线"></a>机器学习流水线</h2><h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p>像股票市场数据、个人生物识别数据如心率、血糖血压指纹等，购物的清单数据、用户在网站上的点击数据，不同的领域都能获得无数的数据。</p>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><p>关于到我们为什么收集数据？我们弄清楚了我们收集数据的原因，就能更清楚的明白自己要做什么，这样才能更有针对性的去解决问题。</p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>数学模型：尝试从数据中了解世界，就像用不完整的拼图以及一堆额外的碎片拼凑出现实。特别是统计模型。数据的数学模型描述了数据不同方面的关系。 </p>
+<p>统计中频繁出现的数据特征概念：误差，冗余，缺失。</p>
+<p>误差数据：测量中的错误导致的。</p>
+<p>冗余数据：数据的多个方面传达完全相同的信息。</p>
+<p>缺失：如果数据缺少了一部分，比如在某一个时间段里，数据点找不到某些信息，那么就是缺失了信息</p>
+<h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><p>特征作为原始数据的数学表示，有很多方法可以将原始数据转换为数学测量值，这就是为什么特征看起来和很多事情相似。但是，特征必须是来自可用数据的类型。虽然某些特征和模型相关联的样子并不明显；一些模型更适合某些类型的特征。因此，正确的特征应该与手头的任务相关并且容易被模型使用。</p>
+<p>特征工程就是给指定数据、模型和任务指定最佳特征的过程。</p>
+<p>特征的数量很重要：</p>
+<ul>
+<li>没有足够的信息特征，则模型无法完成最终的任务。</li>
+<li>过多的特征，或者大多数是无关紧要的，那么训练模型会更加棘手并且代价更大，并且会出现一些错误影响模型的表现。</li>
+</ul>
+<h3 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h3><p>特征和模型位于原始数据和期望的观察结果之间。在机器学习的工作流程中，不仅挑选模型，还要挑选特征。这是一个双节杆，一个选择会影响另一个。良好的特征使后续的建模步骤变得简单，并且得到的模型更能容易实现所需的任务。而糟糕的特征则可能需要更复杂的模型才能达到相同的性能水平。</p>
+<hr>
+<h1 id="简单数字的奇特技巧"><a href="#简单数字的奇特技巧" class="headerlink" title="简单数字的奇特技巧"></a>简单数字的奇特技巧</h1><p>数字数据的来源可能各种各样：地理位置、人、购买的价格、传感器的测量、交通计数等。</p>
+<p>虽然数字数据是数学模型容易消化的格式，但不代表不需要特征工程。转换常常是必要的。数字特征工程计数是基础。当原始数据被转换为数字特征时，才可以被应用。</p>
+<p>数值数据几个重要因素：</p>
+<ul>
+<li>大小是否重要，是正面还是负面</li>
+<li>特征的规模。最大值最小值是什么</li>
+<li>逻辑函数对输入特征量表不敏感，如逻辑函数，阶跃函数，以及像基因空间划分树（决策树、梯度提升机、随机森林）的模型对尺度不敏感。</li>
+<li>数值的特征分布，承担了特定价值的可能性。对某些模型更重要，比如线性回归模型的训练过程嘉定预测误差分布得像高斯。但是预测目标在几个数量级上扩散，那么高斯误差假设可能不再成立。解决问题的一种方法是转变产出目标，以驯服规模的增长。对数变换，这是一种功率变换，将变量的分布接近高斯。</li>
+</ul>
+<p>这里开始讨论复杂特征的最简单示例：<strong>交互功能</strong><br>交互特征易于指定，但特征的组合导致更多的输入到模型中。为了减少计算开销，通常需要使用自动特征选择来修剪输入特征。</p>
+<p>先从<strong>标量</strong>、<strong>向量</strong>和<strong>空间</strong>的基本概念开始，然后再深入到<strong>尺度</strong>、<strong>分布</strong>、<strong>交互特征</strong>和<strong>特征选择</strong>。</p>
+<h2 id="标量、向量和空间"><a href="#标量、向量和空间" class="headerlink" title="标量、向量和空间"></a>标量、向量和空间</h2><p>单个数字特征称为<strong>标量</strong>。<br>标量的有序列表称为<strong>向量</strong>。向量位于向量空间中。<br>在绝大机器学习应用中，对模型的输入通常表示为数字向量。</p>
+<p>向量可以被可视化为空间的一个点。有时人们从原点到那一点画一条线和一个箭头。例如，假设我们有一个二维向量v=[1，-1]。也就是说，向量包含两个数，在第一方向d1中，向量具有1的值，并且在第二方向d2中，它具有-1的值。我们可以在二维图中绘制v。</p>
+<h2 id="处理计数"><a href="#处理计数" class="headerlink" title="处理计数"></a>处理计数</h2><p>在大数据时代，计数可以快速积累而不受约束。用户可以将歌曲或电影放在无限播放中，或者使用脚本反复检查流行节目的门票可用性，这会导致播放次数或网站访问计数迅速上升。当数据可以以高的体积和速度产生时，它们很可能包含一些极值。这是一个好主意，检查他们的规模，并确定是否保持它们作为原始数字，将它们转换成二进制变量，以指示存在，或将它们放入粗粒度。</p>
+<h2 id="二值化"><a href="#二值化" class="headerlink" title="二值化"></a>二值化</h2><p>Million Song 数据集中的用户品味画像包含了一百万个用户在 Echo Nest 的完整音乐聆听历史。下面是有关数据集的一些相关统计数据。</p>
+<h3 id="Echo-Nest-品味画像数据集的统计"><a href="#Echo-Nest-品味画像数据集的统计" class="headerlink" title="Echo Nest 品味画像数据集的统计"></a>Echo Nest 品味画像数据集的统计</h3><ul>
+<li>有超过4800万个用户ID、音乐ID和监听计数三元组。</li>
+<li>完整的数据集包含1019318个独特用户和384546首独特歌曲。</li>
+<li>引文：Echo Nest 品味画像的数据子集，官方的 Million Song 数据集的用户数据集，可从这里获得：<a href="http://labrosa.ee.columbia.edu/millionsong/tasteprofile" target="_blank" rel="noopener">http://labrosa.ee.columbia.edu/millionsong/tasteprofile</a></li>
+</ul>
+<p>假设任务是建立一个推荐器向用户推荐歌曲。推荐器的一个组件可以预测用户将对一首特别的歌曲会有多少喜欢。由于数据包含实际的听歌次数，这应该是预测的目标吗？如果一个大的听计数意味着用户真的喜欢这首歌，反之亦然，那是正确的。然而，数据表明，虽然99%的听计数是24或更低，也有一些听计数数以千计，最大为9667。（如图所示，直方图最接近于0的bin中的峰值。但是超过10000个三元组的计数更大，几千个则有几个。这些值异常大；如果我们试图预测实际的听计数，那么模型将被这些大的值拉离。</p>
+<img src="/posts/8ae97bf8/1.png">
+<p>在 Million Song 数据集中，原始监听计数不是用户口味的可靠度量。（在统计术语中，健壮性意味着该方法在各种各样的条件下工作。）用户有不同的听力习惯。有些人可能把他们最喜欢的歌曲放在无限的循环中，而其他人可能只在特殊的场合品尝它们。很难说听一首歌20次的人一定喜欢听10次的人的两倍。</p>
+<p>用户偏好的更健壮表示是使计数二元化和修剪所有大于1的计数为1。<strong>换句话说，如果用户至少听过一首歌，那么我们将其视为用户喜欢歌曲</strong>。这样，模型不需要花费周期来预测原始计数之间的微小差异。二进制目标是用户偏好的简单而稳健的度量。</p>
+<p>例子：使million song数据集中听歌计数二进制化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line">listen_count = pd.read_csv(<span class="string">'millionsong/train_triplets.txt.zip'</span>, header=<span class="keyword">None</span>, delimiter=<span class="string">'\t'</span>) </span><br><span class="line"><span class="comment"># 该表包含用户歌曲计数三元组。只有非零计数</span></span><br><span class="line"><span class="comment"># 因此，要对计数进行二值化，我们只需要将整个计数列设置为1。</span></span><br><span class="line">listen_count[<span class="number">2</span>] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>这是我们设计模型目标变量的一个例子。严格地说, 目标不是一个特征, 因为它不是输入。但有时我们确实需要修改目标以解决正确的问题。</p>
+<h2 id="量化或装箱"><a href="#量化或装箱" class="headerlink" title="量化或装箱"></a>量化或装箱</h2><p>数据源于第 6 轮 Yelp 数据集挑战中采集数据，创建一个更小的分类数据集。Yelp 数据集包含用户对来自北美和欧洲十个城市的企业的评论。每个商户都标记为零个或多个类别。以下是有关数据集的相关统计信息。</p>
+<ul>
+<li>有782种商户类别。</li>
+<li>完整的数据集包含 1569264 个（约1.6M）评论和 61184 个（61K）商户。</li>
+<li>“餐厅”（990627个评论）和“夜生活”（210028个评论）是最流行的类别，评论计数是明智的。</li>
+<li>没有一个商户同时属于餐厅和夜生活分类。因此，这两组评论之间没有重叠</li>
+</ul>
+<p>每个商户都有一个评论计数。假设我们的任务是使用协同过滤来预测用户可能给企业的评级。评论计数可能是一个有用的输入特征，因为通常在流行和良好的评级之间有很强的相关性。现在的问题是，我们应该使用原始评论计数或进一步处理它吗？图2显示了所有商户评论计数的直方图。我们看到和音乐听歌计数一样的模式。大部分的统计数字都很小，但一些企业有成千上万的评论。</p>
+<img src="/posts/8ae97bf8/2.png">
+<p>对于许多模型来说，跨越数个数量级的原始计数是有问题的。在线性模型中，相同的线性系数必须对计数的所有可能值工作。大量的计数也可能破坏无监督学习方法，如k-均值聚类，它使用相似性函数来测量数据点之间的相似性。k-均值使用数据点之间的欧几里得距离。数据向量的一个元素中的大计数将超过所有其他元素中的相似性，这可能会丢弃整个相似性度量。</p>
+<p>一种解决方案是通过量化计数来包含标量。换句话说，我们将计数分组到容器中，并且去掉实际的计数值。量化将连续数映射成离散数。我们可以把离散化的数字看作是代表强度度量的容器的有序的序列。</p>
+<p>为了量化数据，我们必须决定每一个箱子应该有多宽。解决方案分为固定宽度或自适应两种类型。我们将给出每个类型的例子。</p>
+<h3 id="固定宽度装箱"><a href="#固定宽度装箱" class="headerlink" title="固定宽度装箱"></a>固定宽度装箱</h3><p> 对于固定宽度装箱, 每个 bin 都包含一个特定的数值范围。范围可以是定制设计或自动分割, 它们可以线性缩放或指数缩放。例如, 我们可以将一个人的年龄分组为十年: 0-9 岁归纳到bin 1, 10-19 年归纳到 bin 2 等。要从计数映射到 bin, 只需除以 bin 的宽度并取整部分。</p>
+<p>也经常看到定制设计的年龄范围更适合于生活的阶段：</p>
+<ul>
+<li>0-12 岁</li>
+<li>12-17 岁</li>
+<li>18-24 岁</li>
+<li>25-34 岁</li>
+<li>35-44 岁</li>
+<li>45-54 岁</li>
+<li>55-64 岁</li>
+<li>65-74 岁</li>
+<li>75 岁以上</li>
+</ul>
+<p>当数字跨越多个数量级时，最好用10个幂（或任何常数的幂）来分组：0－9、10-99、100-999、1000-9999等。容器宽度呈指数增长，从O（10）、O（100）到O（1000）和以上。要从计数映射到bin，取计数的log值。指数宽度的划分与对数变换非常相关。</p>
+<h3 id="分位数装箱"><a href="#分位数装箱" class="headerlink" title="分位数装箱"></a>分位数装箱</h3><p>固定宽度装箱很容易计算。但是如果计数有很大的差距, 那么将会有许多空的垃圾箱没有数据。该问题可以通过基于数据分布的垃圾箱自适应定位来解决。这可以使用分发的分位数来完成。</p>
+<p>分位数是将数据划分为相等部分的值。例如, 中位数将数据分成一半;一半的数据是较小的, 一半大于中位数。分位数把数据分成几个部分, 十分位数把数据划分成十份。</p>
+<p>通过分位数来装箱，能够更明显的看</p>
+<img src="/posts/8ae97bf8/3.png">
+<p>通过红色的线来划分每一个数值范围，这样数据的可视化效果会比其他装箱方法好很多。<br>为了计算分位数和映射数据到分位数箱，我们可以使用 Pandas 库。 pandas.DataFrame.quantile 和 pandas.Series.quantile 用于计算分位数。pandas.qcut将数据映射到所需数量的分位数。</p>
+<h2 id="对数转换"><a href="#对数转换" class="headerlink" title="对数转换"></a>对数转换</h2><p>在“量化或装箱”中，简要地介绍了把计数的对数映射到指数宽度箱的概念。</p>
+<p>对数函数是指数函数的逆。它定义为$\log _{a}\left(\mathrm{a}^{x}\right)=x$ ， 其中 a 为正常数, x 可以是任何正数。由于$a^{0}=1$，我们有$\log _{a}(1)=0$。<br>这意味着对数函数将小范围的数字 (0、1) 映射到负数的整个范围 (-∞, 0)。函数$\log _{10}(\mathrm{x})$将 [1、10] 映射到 [0、1]、将[10、100] 映射到 [1、2] 等等。换言之, 对数函数压缩大数的范围, 并扩展小数的范围。越大的 x , log(x)的增量越慢。通过查看 log 函数的图像, 可以更容易地消化这一点。如下图</p>
+<img src="/posts/8ae97bf8/4.png">
+<p>对数变换是处理具有重尾分布的正数的有力工具。（重尾分布在尾部范围内的概率比高斯分布的概率大）。它将分布在高端的长尾压缩成较短的尾部，并将低端扩展成较长的头部。下图比较d对数转换之前和之后的YELP商户评论计数的直方图。Y轴现在都在正常（线性）尺度上。在（0.5，1）范围内的 底部图中增加的仓间隔是由于在1和10之间只有10个可能的整数计数。请注意，原始审查计数非常集中在低计数区域，离群值在4000以上。对数变换后，直方图不集中在低端，更分散在X轴上。</p>
+<img src="/posts/8ae97bf8/5.png">
+<p>下图是在线新闻流行数据集中其中一个特征——文章中的单词数。显示了对数转换前后特征的直方图。请注意, 在对数转换后, 分布看起来更高斯, 除了长度为零的文章 (无内容) 的断裂。</p>
+<img src="/posts/8ae97bf8/6.png">
+<h2 id="数据可视化的重要性"><a href="#数据可视化的重要性" class="headerlink" title="数据可视化的重要性"></a>数据可视化的重要性</h2><p>对数变换在两个不同数据集上的影响的比较，说明了可视化数据的重要性。在这里，我们故意保持输入和目标变量简单，以便我们可以很容易地可视化它们之间的关系。如下图所示的曲线，立即显示所选择的模型（线性）不可能代表所选择的输入和目标之间的关系。另一方面，人们可以令人信服地在给定平均星级模拟评论数的分布。在建立模型时，最好直观地检查输入和输出之间的关系，以及不同输入特征之间的关系。</p>
+<img src="/posts/8ae97bf8/7.png">
+<h3 id="功率变换：对数变换的推广"><a href="#功率变换：对数变换的推广" class="headerlink" title="功率变换：对数变换的推广"></a>功率变换：对数变换的推广</h3><p>对数变换是一个称为功率变换的变换族的特殊例子。在统计方面，这些是方差稳定的变换。为了理解为什么方差稳定是好的，考虑泊松分布。这是一个方差等于它的平均值的重尾分布。因此，它的质量中心越大，其方差越大，尾部越重。功率变换改变变量的分布，使得方差不再依赖于平均值。例如，假设一个随机变量X具有泊松分布。假如我们使用开平方根变换X，$\widetilde{X}=\sqrt{X}$的方差大致是恒定的，而不是平均值。</p>
+<p>平方根变换和对数变换的简单推广称为Box-Cox变换：</p>
+<script type="math/tex; mode=display">
+\tilde{x}=\left\{\begin{array}{ll}{\frac{x^{2}-1}{\lambda}} & {\text { if } \lambda \neq 0} \\ {\ln (x)} & {\text { if } \lambda=0}\end{array}\right.</script><p>下图 ，展示出了在 λ = 0 （log变换），λ = 0.25, λ = 0.5（平方根的缩放和移位版本），λ = 0.75, 和 λ = 1.5 时的Box-Cox变换。设置 λ 小于1时压缩较高的值，并且设置 λ 大于1时具有相反的效果。</p>
+<img src="/posts/8ae97bf8/8.png">
+<p>只有当数据为正值时, Box-Cox 公式才能工作。对于非正数据, 可以通过加上固定常量来移动数值。当应用 Box-Cox 变换或更一般的功率变换时, 必须确定参数 λ 的值。这可能是通过最大似然(找到的λ,使产生的变换信号的高斯似然最大) 或贝叶斯方法。</p>
+<p>下图 为可视化评论数的原始、对数转换和 Box-Cox 转换的直方图。</p>
+<img src="/posts/8ae97bf8/9.png">
+<p>概率图是一种直观地比较数据分布与理论分布的简单方法。这本质上是观察到散点图的与理论分位数。图10显示YELP评论数的原始数据和转换后数据相对正态分布的概率图。由于观测数据是严格正的，高斯可以是负的，所以分位数在负端上永远不会匹配。所以我们关注的是正数这的一边。在这方面，原始评论数明显比正常分布更重尾。（有序值上升到4000，而理论位数仅延伸到4）。简单的对数变换和最优的 Box-Cox 变换都使正尾部接近正态分布。最优的 Box-Cox 变换比对数变换更缩小尾部，由于尾部在红色对角线等值线下平展可以明显看出。</p>
+<img src="/posts/8ae97bf8/10.png">
+<h2 id="特征缩放或归一化"><a href="#特征缩放或归一化" class="headerlink" title="特征缩放或归一化"></a>特征缩放或归一化</h2><p>某些特征的值有界的，如纬度或经度。其他数值特征 (如数量) 可能会在无界的情况下增加。那些关于输入是平滑函数的模型, 如线性回归、逻辑回归或任何涉及矩阵的东西, 都受输入的数值范围影响。另一方面, 基于树的模型不太在意这个。如果模型对输入特征的数值范围敏感, 则特征缩放可能会有所帮助。 特征缩放会更改特征值的数值范围。有时人们也称它为特征规范化。功能缩放通常分别针对单个特征进行。有几种常见的缩放操作, 每个类型都产生不同的特征值分布</p>
+<h3 id="Min-max缩放"><a href="#Min-max缩放" class="headerlink" title="Min-max缩放"></a>Min-max缩放</h3><p>设X是一个单独的特征值（即，在某些数据点中的一个特征值），以及 min(x) 和 max(x) ，分别是整个数据集上该特征的最小值和最大值。Min-max缩放压缩（或拉伸）所有特征值到[0, 1 ]的范围内。下图演示了这个概念。最小最大尺度的公式是</p>
+<script type="math/tex; mode=display">
+\widetilde{x}=\frac{x-\min (x)}{\max (x)-\min (x)}</script><img src="/posts/8ae97bf8/11.png">
+<h3 id="标准化（方差缩放）"><a href="#标准化（方差缩放）" class="headerlink" title="标准化（方差缩放）"></a>标准化（方差缩放）</h3><p>特征标准化的定义为：</p>
+<script type="math/tex; mode=display">
+\widetilde{x}=\frac{x-\operatorname{mean}(x)}{\operatorname{var}(x)}</script><p>减去特征 (所有数据点) 的平均值并除以方差。因此, 它也可以称为方差缩放。缩放后的特征的平均值为0, 方差为1。如果原始特征具有高斯分布, 则缩放特征为标准高斯。下图包含了标准化的说明。</p>
+<img src="/posts/8ae97bf8/12.png">
+<h2 id="不要中心和稀疏数据"><a href="#不要中心和稀疏数据" class="headerlink" title="不要中心和稀疏数据"></a>不要中心和稀疏数据</h2><p>最小最大缩放和标准化都从原始特征值中减去一个数量。对于最小最大缩放, 移动量是当前特征的所有值中最小的。对于标准化, 移动的量是平均值。如果移动量不是零, 则这两种转换可以将稀疏特征（大部分值为零）的向量转换为一个稠密的向量。但是如果移动量为零，那么会给分类器带来巨大的计算负担, 取决于它是如何实现的。词袋是一种稀疏表示, 大多数分类库都对稀疏输入进行优化。如果现在的表示形式包含了文档中没有出现的每个单词, 那就太可怕了。请谨慎对稀疏特征执行最小最大缩放和标准化操作。</p>
+<h3 id="L2-normalization"><a href="#L2-normalization" class="headerlink" title="L2 normalization"></a>L2 normalization</h3><p>通过所谓的 L2 范数 (也称为欧几里德范数) 正常化 (划分) 原始特征值。</p>
+<script type="math/tex; mode=display">
+\tilde{x}=\frac{x}{\|x\|_{2}}</script><p>L2范数度量向量在坐标空间中的长度。这个定义可以从众所周知的勾股定理中得到，给出三角形两边的长度，可以得到斜边长度</p>
+<script type="math/tex; mode=display">
+\|x\|_{2}=\sqrt{x_{1}^{2}+x_{2}^{2}+\ldots+x_{m}^{2}}</script><p>L2 范数将求特征的各数据点的平方和, 然后取平方根。L2 规范化后, 该特征列具有范数1。它也可以称为 L2 缩放。(不严谨的说, 缩放意味着和常量相乘, 而规范化可能涉及许多操作。）下图说明了 L2 规范化。</p>
+<img src="/posts/8ae97bf8/13.png">
+<h2 id="数据空间和特征空间"><a href="#数据空间和特征空间" class="headerlink" title="数据空间和特征空间"></a>数据空间和特征空间</h2><p>上图中的说明是在数据空间中，而不是特征空间。还可以对数据点进行L2归一化，而不是特征，这将导致具有单位范数（范数为1）的数据向量。不管缩放方法如何，特征缩放总是将特征除以常数（也称为归一化常数）。因此，它不会改变单特征分布的形状。我们将用在线新闻文章标记计数来说明这一点。</p>
+<p>我们也可以可视化用不同的特征缩放方法后的数据的分布。如下图所示，与对数变换不同，特征缩放不会改变分布的形状；只有数据的规模发生变化。</p>
+<img src="/posts/8ae97bf8/14.png">
+<p>在一组输入特征在比例上差异很大的情况下，特征缩放非常有用。例如，一个流行的电子商务网站的每日访问者数量可能是十万，而实际销售额可能是几千。如果这两种功能都投入到模型中，那么该模型需要在确定要做什么的同时平衡它们的规模。输入特征的极大变化会导致模型训练算法的数值稳定性问题。在这些情况下，标准化功能是个好主意。第4章将详细介绍处理自然文本时的特征缩放，包括使用示例。</p>
+<h2 id="交互特征"><a href="#交互特征" class="headerlink" title="交互特征"></a>交互特征</h2><p>简单的成对交互特征是两个特征的积。类似逻辑与。它以成对条件表示结果：“购买来自邮政编码98121”和“用户的年龄在18到35之间”。这一点对基于决策树的模型没有影响，但交互特征对广义线性模型通常很有帮助。</p>
+<p>一个简单的线性模型使用单个输入特征线性组合x1，x2，… xn来预测结果y</p>
+<p>$y=w_{I} X_{I}+w_{2} X_{2}+\ldots+w_{n} X_{n}$</p>
+<p>一个简单的扩展线性模型的方法是包含输入特征对的组合，如下所示：</p>
+<p>$y=w_{I} X_{1}+w_{2} X_{2}+\ldots+w_{n} X_{n}+w_{1,1} X_{1}X_{1}+w_{1,2} X_{1}X_{2}+w_{1,3} X_{1}X_{3}$</p>
+<p>这使我们能够捕获特征之间的相互影响，因此它们被称为交互特征。如果x1和x2是二元的，那么它们的积 x1x2 是逻辑函数 x1 AND x2 假设问题是根据他或她的个人资料信息预测客户的偏好。在这种情况下，交互特征不是仅基于用户的年龄或位置进行预测，而交互特征允许模型基于具有特定年龄和特定位置的用户进行预测。</p>
+<p><strong>构造交互特征非常简单，但它们使用起来很昂贵。使用成对交互特征的线性模型的训练和得分时间将从O（n）到O（n2），其中n是单身特征的数量。</strong></p>
+<p>围绕高阶交互特征的计算成本有几种方法。可以在所有交互特征之上执行特征选择，选择前几个。或者，可以更仔细地制作更少数量的复杂特征。两种策略都有其优点和缺点。特征选择采用计算手段来选择问题的最佳特征。（这种技术不限于交互特征。）一些特征选择技术仍然需要训练多个具有大量特征的模型。</p>
+<p>手工制作的复杂特征可以具有足够的表现力，所以只需要少量这些特征，这可以缩短模型的训练时间。但是特征本身的计算可能很昂贵，这增加了模型评分阶段的计算成本。</p>
+<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>特征选择技术会删除非有用的特征，以降低最终模型的复杂性。最终目标是快速计算的简约模型，预测准确性降低很小或不会降低。为了得到这样的模型，一些特征选择技术需要训练多个候选模型。换句话说，特征选择并不是减少训练时间，实际上有些技巧增加了整体训练时间，但是减少了模型评分时间。</p>
+<p>大致分三种特征选择技术：</p>
+<h3 id="Filtering（过滤）"><a href="#Filtering（过滤）" class="headerlink" title="Filtering（过滤）"></a>Filtering（过滤）</h3><p>预处理可以删除那些不太可能对模型有用的特征。例如，可以计算每个特征与响应变量之间的相关或相互信息，并筛除相关信息或相互信息低于阈值的特征。第3章讨论了文本特征的过滤技术的例子。过滤比下面的包装（wrapper）技术便宜得多，但是他们没有考虑到正在使用的模型。因此他们可能无法为模型选择正确的特征。最好先保守地进行预过滤，以免在进行模型训练步骤之前无意中消除有用的特征。</p>
+<h3 id="Wrapper-methods（包装方法）"><a href="#Wrapper-methods（包装方法）" class="headerlink" title="Wrapper methods（包装方法）"></a>Wrapper methods（包装方法）</h3><p>这些技术是昂贵的，但它们允许您尝试特征子集，这意味着你不会意外删除自身无法提供信息但在组合使用时非常有用的特征。包装方法将模型视为提供特征子集质量分数的黑盒子。是一个独立的方法迭代地改进子集。</p>
+<h3 id="Embedded-methods（嵌入式方法）"><a href="#Embedded-methods（嵌入式方法）" class="headerlink" title="Embedded methods（嵌入式方法）"></a>Embedded methods（嵌入式方法）</h3><p>嵌入式方法执行特征选择作为模型训练过程的一部分。 例如，决策树固有地执行特征选择，因为它在每个训练步骤选择一个要在其上进行树分裂的特征。另一个例子是$t_{1}$正则，它可以添加到任何线性模型的训练目标中。$t_{1}$鼓励模型使用一些特征而不是许多特征。因此它也被称为模型的稀疏约束。嵌入式方法将特征选择作为模型训练过程的一部分。它们不如包装方法那么强大，但也远不如包装方法那么昂贵。与过滤相比，嵌入式方法会选择特定于模型的特征。从这个意义上讲，嵌入式方法在计算费用和结果质量之间取得平衡。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>许多常见的数字特征工程技术：量化，缩放（又称规范化），对数变换（一种功率变换），交互特征以及处理大量交互特征所需的特征选择技术的简要总结。在统计机器学习中，所有数据最终归结为数字特征。</p>
+<h1 id="文本数据：展开、过滤和分块"><a href="#文本数据：展开、过滤和分块" class="headerlink" title="文本数据：展开、过滤和分块"></a>文本数据：展开、过滤和分块</h1><p>我们知道一个名叫Emma的人和一只乌鸦。这里有一座房子和一棵树，艾玛正想进屋，却看到了乌鸦。这只华丽的乌鸦注意到艾玛，她有点害怕，但正在尝试交流。</p>
+<p>那么，这些信息的哪些部分是我们应该提取的显着特征？首先，提取主要角色艾玛和乌鸦的名字似乎是个好主意。接下来，注意房子，门和树的布置可能也很好。关于乌鸦的描述呢？Emma的行为呢，敲门，退后一步，打招呼呢？</p>
+<h2 id="Bag-of-X-把自然文本变成平面向量"><a href="#Bag-of-X-把自然文本变成平面向量" class="headerlink" title="Bag of X: 把自然文本变成平面向量"></a>Bag of X: 把自然文本变成平面向量</h2><p>去构建机器学习或者特征工程，都应该要得到一个通俗易懂的结果。</p>
+<p>虽然简单和可解释的功能并不一定能得到最精确的模型，但是从简单开始会比较好，必要时再增加复杂性。</p>
+<p>对于文本数据，我们可以从称为 BOW 词袋模型。BOW中并没有特别费力来寻找<code>&quot;Emma&quot;</code>或乌鸦这样有趣的实体。但是这两个词在该段落中被重复提到，并且它们在这里的计数比诸如<code>&quot;hello&quot;</code>之类的随机词更高。对于此类简单的文档分类任务，字数统计通常比较适用。它也可用于信息检索，其目标是检索与输入文本相关的文档集。这两个任务都很好解释词级特征，因为某些特定词的存在可能是本文档主题内容的重要指标。</p>
+<h2 id="词袋"><a href="#词袋" class="headerlink" title="词袋"></a>词袋</h2><p>在词袋特征中，文本文档被转换成向量。（向量只是 n 个数字的集合。）向量包含词汇表中每个单词可能出现的数目。 如果单词<code>&quot;aardvark&quot;</code>在文档中出现三次，则该特征向量在与该单词对应的位置上的计数为 3。 如果词汇表中的单词没有出现在文档中，则计数为零。 例如，“这是一只小狗，它是非常可爱”的句子具有如图所示的 BOW 表示</p>
+<img src="/posts/8ae97bf8/15.png">
+<p>BOW 将文本文档转换为平面向量。 它是“平面的”，因为它不包含任何原始的文本结构。 原文是一系列词语。但是词袋向量并没有序列；它只是记得每个单词在文本中出现多少次。 它不代表任何词层次结构的概念。 例如，“动物”的概念包括“狗”，“猫”，“乌鸦”等。但是在一个词袋表示中，这些词都是矢量的相同元素。</p>
+<img src="/posts/8ae97bf8/16.png">
+<p>上图是两个等效的词袋，里面的单词的排序不重要，重要的是它在数据集中的个数和文档中出现的数量是一样的。</p>
+<p>重要的是特征空间中数据的几何形状。 在一个词袋矢量中，每个单词成为矢量的一个维度。如果词汇表中有 n 个单词，则文档将成为n维空间中的一个点。 很难想象二维或三维以外的任何物体的几何形状，所以我们必须使用我们的想象力。 下图显示了我们的例句在对应于“小狗”和“可爱”两个维度的特征空间中的样子。</p>
+<img src="/posts/8ae97bf8/17.png">
+<img src="/posts/8ae97bf8/18.png" title="三维特征空间">
+<p>描绘了特征空间中的数据向量。 坐标轴表示单个单词，它们是词袋表示下的特征，空间中的点表示数据点（文本文档）。 有时在数据空间中查看特征向量也是有益的。 特征向量包含每个数据点中特征的值。 轴表示单个数据点和点表示特征向量。 图 3-5 展示了一个例子。 通过对文本文档进行词袋特征化，一个特征是一个词，一个特征向量包含每个文档中这个词的计数。 这样，一个单词被表示为一个“一个词向量”。正如我们将在第 4 章中看到的那样，这些文档词向量来自词袋向量的转置矩阵。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Just for fun!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Qsx 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+	<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------<i class="fa fa-paw"></i> 文章已经到尾 <i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+		
+	</div>
+	
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/特征工程/" rel="tag"># 特征工程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/b34b3e68.html" rel="next" title="动手学深度学习">
+                <i class="fa fa-chevron-left"></i> 动手学深度学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Qsx" />
+            
+              <p class="site-author-name" itemprop="name">Qsx</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Shelhon" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ppp00qqq@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/qsxmybaby" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://zhihu.com/people/shelhon" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.kofes.cn/" title="cz" target="_blank">cz</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提提示"><span class="nav-number">1.1.</span> <span class="nav-text">前提提示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习流水线"><span class="nav-number">1.2.</span> <span class="nav-text">机器学习流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-number">1.2.2.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型"><span class="nav-number">1.2.3.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征"><span class="nav-number">1.2.4.</span> <span class="nav-text">特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型评估"><span class="nav-number">1.2.5.</span> <span class="nav-text">模型评估</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单数字的奇特技巧"><span class="nav-number">2.</span> <span class="nav-text">简单数字的奇特技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标量、向量和空间"><span class="nav-number">2.1.</span> <span class="nav-text">标量、向量和空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理计数"><span class="nav-number">2.2.</span> <span class="nav-text">处理计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二值化"><span class="nav-number">2.3.</span> <span class="nav-text">二值化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Echo-Nest-品味画像数据集的统计"><span class="nav-number">2.3.1.</span> <span class="nav-text">Echo Nest 品味画像数据集的统计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#量化或装箱"><span class="nav-number">2.4.</span> <span class="nav-text">量化或装箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#固定宽度装箱"><span class="nav-number">2.4.1.</span> <span class="nav-text">固定宽度装箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分位数装箱"><span class="nav-number">2.4.2.</span> <span class="nav-text">分位数装箱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对数转换"><span class="nav-number">2.5.</span> <span class="nav-text">对数转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据可视化的重要性"><span class="nav-number">2.6.</span> <span class="nav-text">数据可视化的重要性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功率变换：对数变换的推广"><span class="nav-number">2.6.1.</span> <span class="nav-text">功率变换：对数变换的推广</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征缩放或归一化"><span class="nav-number">2.7.</span> <span class="nav-text">特征缩放或归一化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Min-max缩放"><span class="nav-number">2.7.1.</span> <span class="nav-text">Min-max缩放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准化（方差缩放）"><span class="nav-number">2.7.2.</span> <span class="nav-text">标准化（方差缩放）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要中心和稀疏数据"><span class="nav-number">2.8.</span> <span class="nav-text">不要中心和稀疏数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#L2-normalization"><span class="nav-number">2.8.1.</span> <span class="nav-text">L2 normalization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据空间和特征空间"><span class="nav-number">2.9.</span> <span class="nav-text">数据空间和特征空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交互特征"><span class="nav-number">2.10.</span> <span class="nav-text">交互特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征选择"><span class="nav-number">2.11.</span> <span class="nav-text">特征选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Filtering（过滤）"><span class="nav-number">2.11.1.</span> <span class="nav-text">Filtering（过滤）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wrapper-methods（包装方法）"><span class="nav-number">2.11.2.</span> <span class="nav-text">Wrapper methods（包装方法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Embedded-methods（嵌入式方法）"><span class="nav-number">2.11.3.</span> <span class="nav-text">Embedded methods（嵌入式方法）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.12.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文本数据：展开、过滤和分块"><span class="nav-number">3.</span> <span class="nav-text">文本数据：展开、过滤和分块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bag-of-X-把自然文本变成平面向量"><span class="nav-number">3.1.</span> <span class="nav-text">Bag of X: 把自然文本变成平面向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词袋"><span class="nav-number">3.2.</span> <span class="nav-text">词袋</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qsx</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">131.4k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+
+</html>
